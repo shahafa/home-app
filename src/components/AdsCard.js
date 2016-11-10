@@ -22,6 +22,7 @@ class AdsCard extends React.Component {
 
   render() {
     const { data } = this.props;
+    console.log(data.ads);
 
     return (
       <div>
@@ -56,9 +57,9 @@ class AdsCard extends React.Component {
   }
 }
 
-const AD_QUERY = gql`
-  query Ad($date: Int!) {
-    ads(page: $date) {
+const ADS_OF_DAY_QUERY = gql`
+  query AdsOfDate($day: String!) {
+    ads: adsOfDay(day: $day) {
       title
       description
       rooms
@@ -70,6 +71,6 @@ const AD_QUERY = gql`
   }
 `;
 
-export default graphql(AD_QUERY, {
-  options: ({ date }) => ({ variables: { date } })
+export default graphql(ADS_OF_DAY_QUERY, {
+  options: ({ day }) => ({ variables: { day } })
 })(AdsCard);

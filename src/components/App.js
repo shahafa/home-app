@@ -2,7 +2,6 @@ import './App.css';
 import 'font-awesome/css/font-awesome.css';
 import React, { Component } from 'react';
 import FontAwesome from 'react-fontawesome';
-import moment from 'moment';
 import AppBar from 'material-ui/AppBar';
 import { blue500 } from 'material-ui/styles/colors';
 import AdsCard from './AdsCard';
@@ -23,7 +22,7 @@ class App extends Component {
 
         <main className="main">
           <AdsCard
-            date={1}
+            day={"2016-11-05 21:22:31.298Z"}
           />
         </main>
 

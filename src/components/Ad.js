@@ -15,7 +15,7 @@ const styles = {
 class Ad extends React.Component {
   static propTypes = {
     title: React.PropTypes.string.isRequired,
-    description: React.PropTypes.string.isRequired,
+    description: React.PropTypes.string,
     rooms: React.PropTypes.number,
     parking: React.PropTypes.bool,
     elevator: React.PropTypes.bool,
@@ -28,7 +28,9 @@ class Ad extends React.Component {
       <div>
         <div style={{ direction: 'rtl' }} dangerouslySetInnerHTML={{__html: this.props.title}} />
         <br/>
-        <div style={{ direction: 'rtl' }} dangerouslySetInnerHTML={{__html: this.props.description}} />
+        {this.props.description &&
+          <div style={{ direction: 'rtl' }} dangerouslySetInnerHTML={{__html: this.props.description}} />
+        }
         <br/>
 
         <div style={styles.wrapper}>
