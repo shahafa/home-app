@@ -1,33 +1,32 @@
 import './App.css';
 import 'font-awesome/css/font-awesome.css';
 import React, { Component } from 'react';
+import DevTools from '../containers/DevTools';
 import FontAwesome from 'react-fontawesome';
 import AppBar from 'material-ui/AppBar';
-import { blue500 } from 'material-ui/styles/colors';
-import AdsCard from './AdsCard';
+import AdsCardContainer from '../containers/AdsCardContainer';
 
 class App extends Component {
   render() {
-    const appBarLeftIcon = <span><FontAwesome name='home' /> Home</span>
+    const appBarStyle = {
+      backgroundColor: '#4688F1',
+    }
 
     return (
       <div>
         <header>
           <AppBar
-            style={{ backgroundColor: blue500 }}
+            style={appBarStyle}
             showMenuIconButton={false}
-            title={appBarLeftIcon}
+            title={<span><FontAwesome name='home' /> Home</span>}
           />
         </header>
 
         <main className="main">
-          <AdsCard
-            day={"2016-11-05 21:22:31.298Z"}
-          />
+          <AdsCardContainer />
         </main>
 
-        <footer>
-        </footer>
+        <DevTools />
       </div>
     );
   }

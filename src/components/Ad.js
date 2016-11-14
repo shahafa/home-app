@@ -1,17 +1,6 @@
 import React from 'react';
 import Chip from 'material-ui/Chip';
 
-const styles = {
-  chip: {
-    margin: 4,
-  },
-  wrapper: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    flexDirection: 'row-reverse',
-  },
-};
-
 class Ad extends React.Component {
   static propTypes = {
     title: React.PropTypes.string.isRequired,
@@ -24,6 +13,17 @@ class Ad extends React.Component {
   }
 
   render() {
+    const styles = {
+      chip: {
+        margin: 4,
+      },
+      wrapper: {
+        display: 'flex',
+        flexWrap: 'wrap',
+        flexDirection: 'row-reverse',
+      },
+    };
+    
     return (
       <div>
         <div style={{ direction: 'rtl' }} dangerouslySetInnerHTML={{__html: this.props.title}} />

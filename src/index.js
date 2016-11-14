@@ -2,14 +2,15 @@ import './index.css';
 import 'font-awesome/css/font-awesome.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import moment from 'moment';
-import ApolloClient from 'apollo-client';
+import configureStore from './store/configureStore'
+import client from './helpers/apolloClient';
 import { ApolloProvider } from 'react-apollo';
+import moment from 'moment';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import App from './components/App';
 
-const client = new ApolloClient();
+const store = configureStore({});
 
 // Some material-ui components use react-tap-event-plugin to listen for touch
 // events because onClick is not fast enough This dependency is temporary and
@@ -20,7 +21,7 @@ injectTapEventPlugin();
 moment.locale('he');
 
 ReactDOM.render(
-  <ApolloProvider client={client}>
+  <ApolloProvider client={client} store={store}>
     <MuiThemeProvider>
       <App />
     </ MuiThemeProvider>
