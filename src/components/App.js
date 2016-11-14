@@ -12,6 +12,12 @@ class App extends Component {
       backgroundColor: '#4688F1',
     }
 
+    const mainStyle = {
+      maxWidth: '656px',
+      marginLeft: 'auto',
+      marginRight: 'auto',
+    }
+
     return (
       <div>
         <header>
@@ -22,7 +28,7 @@ class App extends Component {
           />
         </header>
 
-        <main className="main">
+        <main style={mainStyle}>
           <AdsCardContainer />
         </main>
 
