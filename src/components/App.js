@@ -1,4 +1,3 @@
-import './App.css';
 import 'font-awesome/css/font-awesome.css';
 import React, { Component } from 'react';
 import DevTools from '../containers/DevTools';
