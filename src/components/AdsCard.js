@@ -8,14 +8,14 @@ class AdsCard extends React.Component {
     day: React.PropTypes.object.isRequired,
   }
 
-  dateTitle() {
-      if (this.props.day.isSame(moment(), 'd')) {
-        return 'היום';
-      } else if (this.props.day.isSame(moment().subtract(1, 'day'), 'd')) {
-        return 'אתמול';
-      } else {
-        return this.props.day.format('L');
-      }
+  dateTitle() {  
+    if (this.props.day.isSame(moment(), 'd')) {
+      return 'היום';
+    } else if (this.props.day.isSame(moment().subtract(1, 'day'), 'd')) {
+      return 'אתמול';
+    } else {
+      return this.props.day.format('L');
+    }
   }
 
   render() {

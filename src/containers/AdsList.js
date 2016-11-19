@@ -70,5 +70,5 @@ const ADS_OF_DAY_QUERY = gql`
 `;
 
 export default graphql(ADS_OF_DAY_QUERY, {
-  options: ({ day }) => ({ variables: { day: day.format() } })
+  options: ({ day }) => ({ variables: { day: day.utc().format() } })
 })(AdsCard);

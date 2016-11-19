@@ -13,15 +13,15 @@ class AdsPage extends React.Component {
     super(props);
 
     this.state = {
-      lastDay: moment().startOf('day'),
+      startDate: moment().startOf('day'),
     }
   }
 
-  addDayToLastDay = () => {
+  addDay = () => {
     if (this.props.isLoadingAds) return;
 
     this.setState({
-      lastDay: this.state.lastDay.subtract(1, 'day')
+      startDate: this.state.startDate.subtract(1, 'day')
     })
   }
 
@@ -29,10 +29,11 @@ class AdsPage extends React.Component {
     let elements = [];
     let index = 0
 
-    for (let currentDay = moment().startOf('day'); currentDay.isAfter(this.state.lastDay) || currentDay.isSame(this.state.lastDay); currentDay.subtract(1, 'day')) {
+    for (let currentDay = moment().startOf('day'); currentDay.isAfter(this.state.startDate) || currentDay.isSame(this.state.startDate); currentDay.subtract(1, 'day')) {
       elements.push(<div style={{marginTop: '40px'}} key={index} >
                       <AdsCard day={moment(currentDay)} />
                     </div>);
+
       index += 1;
     }
 
@@ -42,7 +43,7 @@ class AdsPage extends React.Component {
   renderWaypoint() {
     if (!this.props.isLoadingAds) {
       return (
-        <Waypoint onEnter={this.addDayToLastDay}/>
+        <Waypoint onEnter={this.addDay}/>
       );
     }
   }
