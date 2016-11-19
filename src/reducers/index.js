@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux'
-import client from '../helpers/apolloClient';
-import ads from './ads'
+import client from '../utils/apolloClient';
+import home from './home'
 
 const reducers = combineReducers({
-  ads,
+  home,
   apollo: client.reducer()
 })
 

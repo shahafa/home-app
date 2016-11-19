@@ -4,7 +4,7 @@ import moment from 'moment';
 import Waypoint from 'react-waypoint';
 import AdsCard from '../components/AdsCard';
 
-class AdsCardContainer extends React.Component {
+class AdsPage extends React.Component {
   static propTypes = {
     isLoadingAds: React.PropTypes.bool.isRequired,
   }
@@ -74,4 +74,4 @@ const mapStateToProps = (state) => ({
 
 export default connect(
   mapStateToProps
-)(AdsCardContainer)
+)(AdsPage)
