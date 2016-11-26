@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import moment from 'moment';
 import Waypoint from 'react-waypoint';
 import AdsCard from '../components/AdsCard';
+import Filter from '../components/Filter';
 
 class AdsPage extends React.Component {
   static propTypes = {
@@ -51,6 +52,8 @@ class AdsPage extends React.Component {
   render() {
     return (
       <div>
+        <Filter />
+        
         {this.adsCardList()}
 
         {this.renderWaypoint()}

@@ -12,8 +12,10 @@ export default class AuthService {
       container: 'hiw-login-container',
       closable: false,
       auth: {
+        // redirectUrl: 'http://ec2-35-156-102-89.eu-central-1.compute.amazonaws.com/loginCallback',
         redirectUrl: 'http://localhost:3000/loginCallback',
         responseType: 'token',
+        params: {scope: 'openid name email'},
       },
       theme: {
         logo: LogoImg,

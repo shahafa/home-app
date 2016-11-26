@@ -8,7 +8,7 @@ class AdsCard extends React.Component {
     day: React.PropTypes.object.isRequired,
   }
 
-  dateTitle() {  
+  title() {
     if (this.props.day.isSame(moment(), 'd')) {
       return 'היום';
     } else if (this.props.day.isSame(moment().subtract(1, 'day'), 'd')) {
@@ -36,7 +36,7 @@ class AdsCard extends React.Component {
           <div
             style={titleStyle}
           >
-            {this.dateTitle()}
+            {this.title()}
           </div>
 
           <div style={{padding: '20px'}}>

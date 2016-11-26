@@ -6,3 +6,11 @@ body {
   line-height: 20px;
   background-color: #EEEEEE;
 }
+
+.auth0-lock-header-bg  {
+    background-color: #EEEEEE !important;
+}
+
+.auth0-lock-header-bg-blur {
+  opacity: 0 !important;
+}

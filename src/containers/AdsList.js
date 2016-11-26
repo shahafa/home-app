@@ -43,6 +43,10 @@ class AdsCard extends React.Component {
               elevator={ad.elevator}
               balcony={ad.balcony}
               renovated={ad.renovated}
+              price={ad.price}
+              url={ad.url}
+              floor={ad.floor}
+              meter={ad.meter}
             />
 
             {data.ads.length - 1 !== index &&
@@ -65,6 +69,13 @@ const ADS_OF_DAY_QUERY = gql`
       elevator
       balcony
       renovated
+      url
+      floor
+      meter
+      price {
+        date
+        price
+      }
     }
   }
 `;
