@@ -1,4 +1,6 @@
-export const setProfile = (profile) => ({
+const setProfile = profile => ({
   type: 'SET_PROFILE',
   profile,
-})
+});
+
+export default setProfile;

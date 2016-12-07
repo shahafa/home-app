@@ -1,7 +1,7 @@
-import Auth0Lock from 'auth0-lock'
-import { isTokenExpired } from './jwtHelper'
-import { browserHistory } from 'react-router'
-import store from '../store/store'
+import Auth0Lock from 'auth0-lock';
+import { browserHistory } from 'react-router';
+import { isTokenExpired } from './jwtHelper';
+import store from '../store/store';
 import { setProfile } from '../actions/index';
 import LogoImg from '../static/home.svg';
 
@@ -15,7 +15,7 @@ export default class AuthService {
         // redirectUrl: 'http://ec2-35-156-102-89.eu-central-1.compute.amazonaws.com/loginCallback',
         redirectUrl: 'http://localhost:3000/loginCallback',
         responseType: 'token',
-        params: {scope: 'openid name email'},
+        params: { scope: 'openid name email' },
       },
       theme: {
         logo: LogoImg,
@@ -26,13 +26,13 @@ export default class AuthService {
     });
 
     // Add callback for lock `authenticated` event
-    this.lock.on('authenticated', this.doAuthentication.bind(this))
+    this.lock.on('authenticated', this.doAuthentication.bind(this));
 
     // Add callback for lock `authorization_error` event
-    this.lock.on('authorization_error', this.authorizationError.bind(this))
+    this.lock.on('authorization_error', this.authorizationError.bind(this));
 
     // binds login functions to keep this context
-    this.login = this.login.bind(this)
+    this.login = this.login.bind(this);
   }
 
   authorizationError() {
@@ -54,15 +54,15 @@ export default class AuthService {
   }
 
   loggedIn() {
-    const token = AuthService.getToken()
-    const loggedIn = !!token && !isTokenExpired(token)
+    const token = AuthService.getToken();
+    const loggedIn = !!token && !isTokenExpired(token);
 
     // After login async loads the user profile data - happen only once
     if (loggedIn && store.getState().home.profile.name === '') {
       this.lock.getProfile(token, (error, profile) => this.setProfile(profile));
     }
 
-    return loggedIn
+    return loggedIn;
   }
 
   setToken(idToken) {

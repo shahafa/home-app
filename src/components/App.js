@@ -1,28 +1,26 @@
-import React, { Component } from 'react';
+import React from 'react';
 import DevTools from '../containers/DevTools';
 import Header from './Header';
 import AdsPage from '../containers/AdsPage';
 
-class App extends Component {
-  render() {
-    const mainStyle = {
-      maxWidth: '656px',
-      marginLeft: 'auto',
-      marginRight: 'auto',
-    }
+const styles = {
+  main: {
+    maxWidth: '656px',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+  },
+};
 
-    return (
-      <div>
-        <Header />
+const App = () => (
+  <div>
+    <Header />
 
-        <main style={mainStyle}>
-          <AdsPage />
-        </main>
+    <main style={styles.main}>
+      <AdsPage />
+    </main>
 
-        <DevTools />
-      </div>
-    );
-  }
-}
+    <DevTools />
+  </div>
+);
 
 export default App;

@@ -11,17 +11,15 @@ const requireAuth = (nextState, replace) => {
   if (!auth.loggedIn()) {
     replace({ pathname: '/login' });
   }
-}
+};
 
-export const routes = () => {
-  return (
-    <Router history={browserHistory}>
-      <Route path="/" component={App} onEnter={requireAuth}/>
-      <Route path="/login" component={LoginPage} auth={auth}/>
-      <Route path="/loginCallback" component={LoginCallbackPage} />
-      <Redirect from="*" to="/" />
-    </Router>
-  )
-}
+export const routes = () => (
+  <Router history={browserHistory}>
+    <Route path="/" component={App} onEnter={requireAuth} />
+    <Route path="/login" component={LoginPage} auth={auth} />
+    <Route path="/loginCallback" component={LoginCallbackPage} />
+    <Redirect from="*" to="/" />
+  </Router>
+);
 
 export default routes;

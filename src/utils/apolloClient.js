@@ -8,9 +8,9 @@ networkInterface.use([{
     if (!req.options.headers) {
       req.options.headers = {};  // Create the header object if needed.
     }
-    req.options.headers['authorization'] = AuthService.getToken() ? 'Bearer ' + AuthService.getToken() : null;
+    req.options.headers.authorization = AuthService.getToken() ? `Bearer ${AuthService.getToken()}` : null;
     next();
-  }
+  },
 }]);
 
 const client = new ApolloClient({

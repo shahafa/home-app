@@ -5,7 +5,7 @@ import DevTools from '../containers/DevTools';
 
 const enhancer = compose(
   applyMiddleware(client.middleware()),
-  DevTools.instrument()
+  DevTools.instrument(),
 );
 
 const initialState = {
@@ -13,9 +13,10 @@ const initialState = {
     profile: {
       name: '',
       picture: '',
-    }
-  }
-}
+    },
+  },
+};
+
 const store = createStore(rootReducer, initialState, enhancer);
 
 export default store;

@@ -1,10 +1,10 @@
-import { combineReducers } from 'redux'
+import { combineReducers } from 'redux';
 import client from '../utils/apolloClient';
-import home from './home'
+import home from './home';
 
 const reducers = combineReducers({
   home,
-  apollo: client.reducer()
-})
+  apollo: client.reducer(),
+});
 
-export default reducers
+export default reducers;

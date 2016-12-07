@@ -2,11 +2,11 @@ const home = (state = [], action) => {
   switch (action.type) {
     case 'SET_PROFILE':
       return Object.assign({}, state, {
-        profile: action.profile
+        profile: action.profile,
       });
     default:
-      return state
+      return state;
   }
-}
+};
 
-export default home
+export default home;

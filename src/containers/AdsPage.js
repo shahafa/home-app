@@ -1,9 +1,14 @@
 import React from 'react';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 import moment from 'moment';
 import Waypoint from 'react-waypoint';
 import AdsCard from '../components/AdsCard';
-import Filter from '../components/Filter';
+
+const styles = {
+  adsCard: {
+    marginTop: '40px',
+  },
+};
 
 class AdsPage extends React.Component {
   static propTypes = {
@@ -15,25 +20,26 @@ class AdsPage extends React.Component {
 
     this.state = {
       startDate: moment().startOf('day'),
-    }
+    };
   }
 
   addDay = () => {
     if (this.props.isLoadingAds) return;
 
     this.setState({
-      startDate: this.state.startDate.subtract(1, 'day')
-    })
+      startDate: this.state.startDate.subtract(1, 'day'),
+    });
   }
 
   adsCardList() {
-    let elements = [];
-    let index = 0
+    const elements = [];
+    let index = 0;
 
     for (let currentDay = moment().startOf('day'); currentDay.isAfter(this.state.startDate) || currentDay.isSame(this.state.startDate); currentDay.subtract(1, 'day')) {
-      elements.push(<div style={{marginTop: '40px'}} key={index} >
-                      <AdsCard day={moment(currentDay)} />
-                    </div>);
+      elements.push(
+        <div style={styles.adsCard} key={index} >
+          <AdsCard day={moment(currentDay)} />
+        </div>);
 
       index += 1;
     }
@@ -44,16 +50,16 @@ class AdsPage extends React.Component {
   renderWaypoint() {
     if (!this.props.isLoadingAds) {
       return (
-        <Waypoint onEnter={this.addDay}/>
+        <Waypoint onEnter={this.addDay} />
       );
     }
+
+    return null;
   }
 
   render() {
     return (
       <div>
-        <Filter />
-        
         {this.adsCardList()}
 
         {this.renderWaypoint()}
@@ -72,10 +78,10 @@ function isLoadingAds(queries) {
   return false;
 }
 
-const mapStateToProps = (state) => ({
-  isLoadingAds: isLoadingAds(state.apollo.queries)
-})
+const mapStateToProps = state => ({
+  isLoadingAds: isLoadingAds(state.apollo.queries),
+});
 
 export default connect(
-  mapStateToProps
-)(AdsPage)
+  mapStateToProps,
+)(AdsPage);
