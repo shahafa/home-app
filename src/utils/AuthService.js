@@ -26,23 +26,23 @@ export default class AuthService {
     });
 
     // Add callback for lock `authenticated` event
-    this.lock.on('authenticated', this.doAuthentication.bind(this));
+    this.lock.on('authenticated', AuthService.doAuthentication);
 
     // Add callback for lock `authorization_error` event
-    this.lock.on('authorization_error', this.authorizationError.bind(this));
+    this.lock.on('authorization_error', AuthService.authorizationError);
 
     // binds login functions to keep this context
     this.login = this.login.bind(this);
   }
 
-  authorizationError() {
+  static authorizationError() {
     // on error navigate back to login screen
     browserHistory.replace('/login');
   }
 
-  doAuthentication(authResult) {
+  static doAuthentication(authResult) {
     // Saves the user token
-    this.setToken(authResult.idToken);
+    AuthService.setToken(authResult.idToken);
 
     // navigate to the home route
     browserHistory.replace('/');
@@ -59,13 +59,13 @@ export default class AuthService {
 
     // After login async loads the user profile data - happen only once
     if (loggedIn && store.getState().home.profile.name === '') {
-      this.lock.getProfile(token, (error, profile) => this.setProfile(profile));
+      this.lock.getProfile(token, (error, profile) => AuthService.setProfile(profile));
     }
 
     return loggedIn;
   }
 
-  setToken(idToken) {
+  static setToken(idToken) {
     // Saves user token to local storage
     localStorage.setItem('id_token', idToken);
   }
@@ -75,7 +75,7 @@ export default class AuthService {
     return localStorage.getItem('id_token');
   }
 
-  setProfile(profile) {
+  static setProfile(profile) {
     store.dispatch(setProfile(profile));
   }
 

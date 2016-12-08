@@ -69,13 +69,9 @@ class AdsPage extends React.Component {
 }
 
 function isLoadingAds(queries) {
-  for (let query in queries) {
-    if (queries[query].loading === true) {
-      return true;
-    }
-  }
+  const queryIsLoading = Object.keys(queries).find(queryKey => queries[queryKey].loading === true);
 
-  return false;
+  return queryIsLoading !== undefined;
 }
 
 const mapStateToProps = state => ({
