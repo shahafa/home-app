@@ -7,8 +7,8 @@ body {
   background-color: #EEEEEE;
 }
 
-.auth0-lock-header-bg  {
-    background-color: #EEEEEE !important;
+.auth0-lock-header-bg .auth0-lock-header-bg-solid {
+    background-color: white !important;
 }
 
 .auth0-lock-header-bg-blur {
