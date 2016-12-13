@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 
 const styles = {
   container: {
@@ -12,7 +12,7 @@ const styles = {
 
 export class Login extends React.Component {
   static propTypes = {
-    route: React.PropTypes.object.isRequired,
+    route: PropTypes.object.isRequired,
   }
 
   componentDidMount() {

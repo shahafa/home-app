@@ -1,8 +1,8 @@
 /* eslint-disable react/no-danger */
 
-import _ from 'lodash';
-import React from 'react';
+import React, { PropTypes } from 'react';
 import Chip from 'material-ui/Chip';
+import _ from 'lodash';
 
 const styles = {
   rtl: {
@@ -120,17 +120,17 @@ const Ad = ({
 );
 
 Ad.propTypes = {
-  title: React.PropTypes.string.isRequired,
-  description: React.PropTypes.string,
-  rooms: React.PropTypes.number,
-  parking: React.PropTypes.bool,
-  elevator: React.PropTypes.bool,
-  balcony: React.PropTypes.bool,
-  renovated: React.PropTypes.bool,
-  price: React.PropTypes.array,
-  url: React.PropTypes.string,
-  floor: React.PropTypes.number,
-  meter: React.PropTypes.number,
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string,
+  rooms: PropTypes.number,
+  parking: PropTypes.bool,
+  elevator: PropTypes.bool,
+  balcony: PropTypes.bool,
+  renovated: PropTypes.bool,
+  price: PropTypes.array,
+  url: PropTypes.string,
+  floor: PropTypes.number,
+  meter: PropTypes.number,
 };
 
 export default Ad;

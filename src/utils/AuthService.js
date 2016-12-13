@@ -1,8 +1,6 @@
 import Auth0Lock from 'auth0-lock';
 import { browserHistory } from 'react-router';
 import { isTokenExpired } from './jwtHelper';
-import store from '../store/store';
-import { setProfile } from '../actions/index';
 import LogoImg from '../static/home.svg';
 
 export default class AuthService {
@@ -53,14 +51,9 @@ export default class AuthService {
     this.lock.show();
   }
 
-  loggedIn() {
+  static loggedIn() {
     const token = AuthService.getToken();
     const loggedIn = !!token && !isTokenExpired(token);
-
-    // After login async loads the user profile data - happen only once
-    if (loggedIn && store.getState().home.profile.name === '') {
-      this.lock.getProfile(token, (error, profile) => AuthService.setProfile(profile));
-    }
 
     return loggedIn;
   }
@@ -75,12 +68,8 @@ export default class AuthService {
     return localStorage.getItem('id_token');
   }
 
-  static setProfile(profile) {
-    store.dispatch(setProfile(profile));
-  }
-
   static logout() {
-    // Clear user token and profile data from local storage
+    // Clear user token from local storage
     localStorage.removeItem('id_token');
 
     browserHistory.replace('/login');

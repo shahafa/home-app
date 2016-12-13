@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { ApolloProvider } from 'react-apollo';
+import { Provider } from 'react-redux';
 import moment from 'moment';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import store from './store/store';
-import client from './utils/apolloClient';
 import Routes from './routes';
 import './index.css';
 
@@ -17,10 +17,17 @@ injectTapEventPlugin();
 
 moment.locale('he');
 
+const muiTheme = getMuiTheme({
+  checkbox: {
+    boxColor: '#757575',
+    checkedColor: '#4688F1',
+  },
+});
+
 ReactDOM.render(
-  <ApolloProvider client={client} store={store}>
-    <MuiThemeProvider>
+  <Provider store={store}>
+    <MuiThemeProvider muiTheme={muiTheme}>
       <Routes />
     </ MuiThemeProvider>
-  </ApolloProvider>,
+  </Provider>,
   document.getElementById('root'));

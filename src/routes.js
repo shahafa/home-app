@@ -8,7 +8,7 @@ import LoginCallbackPage from './components/LoginCallbackPage';
 const auth = new AuthService('xRHTKjKOShlzj2HcfK88XOfFgAo5ojgl', 'shahaf.auth0.com');
 
 const requireAuth = (nextState, replace) => {
-  if (!auth.loggedIn()) {
+  if (!AuthService.loggedIn()) {
     replace({ pathname: '/login' });
   }
 };

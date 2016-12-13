@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
 import Waypoint from 'react-waypoint';
-import AdsCard from '../components/AdsCard';
+import AdsCard from './AdsCard';
+import Filter from '../components/Filter';
+import FiltersList from '../components/FiltersList';
 
 const styles = {
   adsCard: {
@@ -12,7 +14,7 @@ const styles = {
 
 class AdsPage extends React.Component {
   static propTypes = {
-    isLoadingAds: React.PropTypes.bool.isRequired,
+    isLoadingAds: PropTypes.bool.isRequired,
   }
 
   constructor(props) {
@@ -38,7 +40,7 @@ class AdsPage extends React.Component {
     for (let currentDay = moment().startOf('day'); currentDay.isAfter(this.state.startDate) || currentDay.isSame(this.state.startDate); currentDay.subtract(1, 'day')) {
       elements.push(
         <div style={styles.adsCard} key={index} >
-          <AdsCard day={moment(currentDay)} />
+          <AdsCard date={moment(currentDay)} />
         </div>);
 
       index += 1;
@@ -60,6 +62,9 @@ class AdsPage extends React.Component {
   render() {
     return (
       <div>
+        <Filter />
+        <FiltersList />
+
         {this.adsCardList()}
 
         {this.renderWaypoint()}
@@ -68,16 +73,8 @@ class AdsPage extends React.Component {
   }
 }
 
-function isLoadingAds(queries) {
-  const queryIsLoading = Object.keys(queries).find(queryKey => queries[queryKey].loading === true);
-
-  return queryIsLoading !== undefined;
-}
-
 const mapStateToProps = state => ({
-  isLoadingAds: isLoadingAds(state.apollo.queries),
+  isLoadingAds: state.ads.getAdsInit,
 });
 
-export default connect(
-  mapStateToProps,
-)(AdsPage);
+export default connect(mapStateToProps)(AdsPage);
