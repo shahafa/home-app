@@ -33,9 +33,9 @@ class AdsCard extends React.Component {
 
   title() {
     let title;
-    if (this.props.date.isSame(moment(), 'd')) {
+    if (this.props.date.local().isSame(moment(), 'd')) {
       title = 'היום';
-    } else if (this.props.date.isSame(moment().subtract(1, 'day'), 'd')) {
+    } else if (this.props.date.local().isSame(moment().subtract(1, 'day'), 'd')) {
       title = 'אתמול';
     } else {
       title = this.props.date.format('L');
