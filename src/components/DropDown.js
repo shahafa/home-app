@@ -46,11 +46,11 @@ class DropDown extends React.Component {
     defaultDisplayValue: PropTypes.string,
     children: PropTypes.node,
     onChange: PropTypes.func,
+    value: PropTypes.any,
   }
 
   state = {
     open: false,
-    value: null,
     displayValue: null,
   };
 
@@ -88,12 +88,12 @@ class DropDown extends React.Component {
     const {
       children,
       defaultDisplayValue,
+      value,
     } = this.props;
 
     const {
       anchorEl,
       open,
-      value,
       displayValue,
     } = this.state;
 

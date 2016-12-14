@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { getFilters } from '../actions/filterActions';
+import FilterItem from './FilterItem';
 
 class FiltersList extends React.Component {
   static propTypes = {
@@ -14,9 +15,18 @@ class FiltersList extends React.Component {
   }
 
   render() {
+    const {
+      filters,
+    } = this.props;
+
     return (
       <div>
-        { this.props.filters && this.props.filters.toString() }
+        {filters && filters.length !== 0 &&
+          filters.map((filter, index) =>
+            <div key={index}>
+              <FilterItem filter={filter} />
+            </div>)
+        }
       </div>
     );
   }

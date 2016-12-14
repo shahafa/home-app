@@ -4,9 +4,12 @@ import moment from 'moment';
 import Waypoint from 'react-waypoint';
 import AdsCard from './AdsCard';
 import Filter from '../components/Filter';
-import FiltersList from '../components/FiltersList';
 
 const styles = {
+  filter: {
+    marginTop: '40px',
+  },
+
   adsCard: {
     marginTop: '40px',
   },
@@ -62,8 +65,9 @@ class AdsPage extends React.Component {
   render() {
     return (
       <div>
-        <Filter />
-        <FiltersList />
+        <div style={styles.filter}>
+          <Filter />
+        </div>
 
         {this.adsCardList()}
 
