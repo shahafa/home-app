@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import MenuItem from 'material-ui/MenuItem';
 import Checkbox from 'material-ui/Checkbox';
 import RaisedButton from 'material-ui/RaisedButton';
-import Toggle from 'material-ui/Toggle';
 import DropDown from '../components/DropDown';
 import { addFilter, toggleFilterActiveState } from '../actions/filterActions';
 
@@ -46,17 +45,6 @@ const styles = {
   addFilterButton: {
     height: '18px',
     marginTop: '12px',
-  },
-
-  filterToggle: {
-    display: 'flex',
-    flexDirection: 'row-reverse',
-    marginBottom: '20px',
-  },
-
-  filterToggleLabelStyle: {
-    color: '#757575',
-    marginLeft: '10px',
   },
 };
 
@@ -164,17 +152,6 @@ class FilterAdd extends React.Component {
 
     return (
       <div>
-        <div style={styles.filterToggle}>
-          <Toggle
-            style={{ width: '73px' }}
-            label="סינון"
-            labelPosition="right"
-            labelStyle={styles.filterToggleLabelStyle}
-            defaultToggled
-            onToggle={this.handleFilterToggle}
-          />
-        </div>
-
         <div style={styles.container}>
           <div style={styles.dropDownItem}>
             <DropDown
