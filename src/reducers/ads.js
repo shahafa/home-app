@@ -1,6 +1,5 @@
 const initialState = {
   getAdsInit: false,
-  ads: [],
 };
 
 const ads = (state = initialState, action) => {
@@ -12,7 +11,11 @@ const ads = (state = initialState, action) => {
     case 'GET_ADS_RESULT':
       return Object.assign({}, state, {
         getAdsInit: false,
-        ads: Object.assign({}, state.ads, { [action.date]: action.ads }),
+        [action.date]: action.ads,
+      });
+    case 'REMOVE_ADS':
+      return ({
+        getAdsInit: false,
       });
     default:
       return state;

@@ -17,30 +17,47 @@ class AdsList extends React.Component {
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
     date: PropTypes.string.isRequired,
-    isLoadingAds: PropTypes.bool.isRequired,
-    ads: PropTypes.array.isRequired,
+    ads: PropTypes.array,
   }
 
-  componentDidMount() {
-    const { dispatch } = this.props;
-    dispatch(getAds(this.props.date));
+  componentWillMount() {
+    const {
+      dispatch,
+      date,
+      ads,
+    } = this.props;
+
+    if (dispatch && date && ads === null) {
+      dispatch(getAds(this.props.date));
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const {
+      dispatch,
+      date,
+      ads,
+    } = nextProps;
+
+    if (dispatch && date && ads === null) {
+      dispatch(getAds(this.props.date));
+    }
   }
 
   render() {
     const {
       ads,
-      isLoadingAds,
     } = this.props;
 
     return (
       <div>
         {/* loading */}
-        {isLoadingAds === true &&
+        {!ads &&
           <Loading />
         }
 
         {/* no ads found */}
-        {!isLoadingAds && ads.length === 0 &&
+        {ads && ads.length === 0 &&
           <NoAdsFound />
         }
 
@@ -71,8 +88,7 @@ class AdsList extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => ({
-  ads: state.ads.ads[ownProps.date] ? state.ads.ads[ownProps.date] : [],
-  isLoadingAds: state.ads.getAdsInit,
+  ads: state.ads[ownProps.date] ? state.ads[ownProps.date] : null,
 });
 
 export default connect(mapStateToProps)(AdsList);

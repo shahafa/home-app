@@ -28,6 +28,16 @@ class AdsPage extends React.Component {
     };
   }
 
+  componentWillReceiveProps(nextProps) {
+    const { reloadRequired } = nextProps;
+
+    if (reloadRequired) {
+      this.state = {
+        startDate: moment().startOf('day'),
+      };
+    }
+  }
+
   addDay = () => {
     if (this.props.isLoadingAds) return;
 

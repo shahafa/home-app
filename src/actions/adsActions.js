@@ -11,21 +11,28 @@ const getAdsResult = (date, ads) => ({
 });
 
 export const getAds = date => (dispatch, getState) => {
-  if (getState().getAdsInit) {
+  if (getState().ads.getAdsInit) {
     return null;
   }
   dispatch(getAdsInit());
 
-  return fetch('/api/getAds', {
+  return fetch('/api/getApartments', {
     method: 'POST',
     headers: {
       authorization: `Bearer ${AuthService.getToken()}`,
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ date }),
+    body: JSON.stringify({
+      date,
+      filterActive: getState().filter.filterActive,
+    }),
   })
   .then(response => response.json())
-  .then((filters) => {
-    dispatch(getAdsResult(date, filters.data.ads));
+  .then((response) => {
+    dispatch(getAdsResult(date, response.data.ads));
   });
 };
+
+export const removeAds = () => ({
+  type: 'REMOVE_ADS',
+});

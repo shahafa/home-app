@@ -1,4 +1,5 @@
 import AuthService from '../utils/AuthService';
+import { removeAds } from './adsActions';
 
 const getFiltersInit = () => ({
   type: 'GET_FILTERS_INIT',
@@ -10,7 +11,7 @@ const getFiltersResult = filters => ({
 });
 
 export const getFilters = () => (dispatch, getState) => {
-  if (getState().getFiltersInit) {
+  if (getState().filter.getFiltersInit) {
     return null;
   }
   dispatch(getFiltersInit());
@@ -36,7 +37,7 @@ const addFilterResult = () => ({
 });
 
 export const addFilter = filter => (dispatch, getState) => {
-  if (getState().addFilterInit) {
+  if (getState().filter.addFilterInit) {
     return null;
   }
   dispatch(addFilterInit());
@@ -49,9 +50,10 @@ export const addFilter = filter => (dispatch, getState) => {
     },
     body: JSON.stringify({ filter }),
   }).then(response => response.json())
-    .then((json) => {
+    .then(() => {
       dispatch(addFilterResult());
       dispatch(getFilters());
+      dispatch(removeAds());
     });
 };
 
@@ -64,7 +66,7 @@ const deleteFilterResult = () => ({
 });
 
 export const deleteFilter = filterId => (dispatch, getState) => {
-  if (getState().deleteFilterInit) {
+  if (getState().filter.deleteFilterInit) {
     return null;
   }
   dispatch(deleteFilterInit());
@@ -77,8 +79,18 @@ export const deleteFilter = filterId => (dispatch, getState) => {
     },
     body: JSON.stringify({ filterId }),
   }).then(response => response.json())
-    .then((json) => {
+    .then(() => {
       dispatch(deleteFilterResult());
       dispatch(getFilters());
+      dispatch(removeAds());
     });
+};
+
+const changeFilterActiveState = () => ({
+  type: 'CHANGE_FILTER_ACTIVE_STATE',
+});
+
+export const toggleFilterActiveState = () => (dispatch) => {
+  dispatch(changeFilterActiveState());
+  dispatch(removeAds());
 };

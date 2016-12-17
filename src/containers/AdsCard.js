@@ -66,8 +66,8 @@ class AdsCard extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => ({
-  adsNumber: state.ads.ads[ownProps.date.utc().format()] ?
-    state.ads.ads[ownProps.date.utc().format()].length : 0,
+  adsNumber: state.ads[ownProps.date.utc().format()] ?
+              state.ads[ownProps.date.utc().format()].length : 0,
 });
 
 export default connect(mapStateToProps)(AdsCard);

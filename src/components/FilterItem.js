@@ -11,6 +11,7 @@ const styles = {
     flexDirection: 'row-reverse',
     alignItems: 'center',
     lineHeight: '24px',
+    marginBottom: '10px',
   },
 
   filter: {

@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { getFilters } from '../actions/filterActions';
-import FilterItem from './FilterItem';
+import FilterItem from '../components/FilterItem';
 
 class FiltersList extends React.Component {
   static propTypes = {

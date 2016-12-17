@@ -2,7 +2,6 @@
 
 import React, { PropTypes } from 'react';
 import Chip from 'material-ui/Chip';
-import _ from 'lodash';
 
 const styles = {
   rtl: {
@@ -63,10 +62,10 @@ const Ad = ({
         </div>
       }
 
-      {_.last(price) &&
+      {price &&
         <div>
           <div>
-            {parseInt(_.last(price).price, 10).toLocaleString()} ש״ח
+            {price} ש״ח
           </div>
           <br />
         </div>
@@ -127,7 +126,7 @@ Ad.propTypes = {
   elevator: PropTypes.bool,
   balcony: PropTypes.bool,
   renovated: PropTypes.bool,
-  price: PropTypes.array,
+  price: PropTypes.number,
   url: PropTypes.string,
   floor: PropTypes.number,
   meter: PropTypes.number,
