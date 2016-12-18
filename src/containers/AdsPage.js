@@ -8,16 +8,18 @@ import Filter from '../components/Filter';
 const styles = {
   filter: {
     marginTop: '40px',
+    marginBottom: '40px',
   },
 
   adsCard: {
-    marginTop: '40px',
+    marginBottom: '40px',
   },
 };
 
 class AdsPage extends React.Component {
   static propTypes = {
     isLoadingAds: PropTypes.bool.isRequired,
+    reloadRequired: PropTypes.bool.isRequired,
   }
 
   constructor(props) {
@@ -63,7 +65,7 @@ class AdsPage extends React.Component {
   }
 
   renderWaypoint() {
-    if (!this.props.isLoadingAds) {
+    if (!this.props.isLoadingAds && !this.props.reloadRequired) {
       return (
         <Waypoint onEnter={this.addDay} />
       );
@@ -89,6 +91,7 @@ class AdsPage extends React.Component {
 
 const mapStateToProps = state => ({
   isLoadingAds: state.ads.getAdsInit,
+  reloadRequired: state.ads.reloadRequired,
 });
 
 export default connect(mapStateToProps)(AdsPage);
