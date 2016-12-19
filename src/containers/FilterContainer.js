@@ -3,6 +3,18 @@ import { connect } from 'react-redux';
 import Filter from '../components/filter/Filter';
 import { getFilters, addFilter, deleteFilter, toggleFilterActiveState } from '../actions/filterActions';
 
+const initialState = {
+  fromRooms: null,
+  toRooms: null,
+  fromFloor: null,
+  toFloor: null,
+  fromPrice: null,
+  toPrice: null,
+  renovated: false,
+  elevator: false,
+  parking: false,
+};
+
 class FilterContainer extends React.Component {
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
@@ -10,17 +22,7 @@ class FilterContainer extends React.Component {
     filtersList: PropTypes.array,
   }
 
-  state = {
-    fromRooms: null,
-    toRooms: null,
-    fromFloor: null,
-    toFloor: null,
-    fromPrice: null,
-    toPrice: null,
-    renovated: false,
-    elevator: false,
-    parking: false,
-  }
+  state = initialState;
 
   componentDidMount() {
     const { dispatch } = this.props;
@@ -30,6 +32,8 @@ class FilterContainer extends React.Component {
   handleActiveFilterToggle = () => {
     const { dispatch } = this.props;
     dispatch(toggleFilterActiveState());
+
+    this.setState(initialState);
   }
 
   handleFromRoomsSelect = (event, index, value) => {
@@ -87,34 +91,14 @@ class FilterContainer extends React.Component {
   }
 
   handleAddFilterButonClick = () => {
-    if (JSON.stringify(this.state) === JSON.stringify({
-      fromRooms: null,
-      toRooms: null,
-      fromFloor: null,
-      toFloor: null,
-      fromPrice: null,
-      toPrice: null,
-      renovated: false,
-      elevator: false,
-      parking: false,
-    })) {
+    if (JSON.stringify(this.state) === JSON.stringify(initialState)) {
       return;
     }
 
     const { dispatch } = this.props;
     dispatch(addFilter(this.state));
 
-    this.setState({
-      fromRooms: null,
-      toRooms: null,
-      fromFloor: null,
-      toFloor: null,
-      fromPrice: null,
-      toPrice: null,
-      renovated: false,
-      elevator: false,
-      parking: false,
-    });
+    this.setState(initialState);
   }
 
   handleDeleteButonClick = (filterId) => {
