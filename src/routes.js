@@ -1,7 +1,7 @@
 import React from 'react';
 import { Router, Route, browserHistory, Redirect } from 'react-router';
 import AuthService from './utils/AuthService';
-import App from './components/App';
+import App from './containers/App';
 import LoginPage from './components/LoginPage';
 import LoginCallbackPage from './components/LoginCallbackPage';
 

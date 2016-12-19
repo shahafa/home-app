@@ -17,6 +17,8 @@ const styles = {
   },
 };
 
+const developmentMode = process.env.NODE_ENV === 'development';
+
 const App = () => (
   <div>
     <Header />
@@ -29,7 +31,9 @@ const App = () => (
       <AdsCardList />
     </main>
 
-    <DevTools />
+    {developmentMode &&
+      <DevTools />
+    }
   </div>
 );
 
