@@ -2,21 +2,15 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
 import Waypoint from 'react-waypoint';
-import AdsCard from './AdsCard';
-import Filter from '../components/Filter';
+import AdsCardContainer from './AdsCardContainer';
 
 const styles = {
-  filter: {
-    marginTop: '40px',
-    marginBottom: '40px',
-  },
-
   adsCard: {
     marginBottom: '40px',
   },
 };
 
-class AdsPage extends React.Component {
+class AdsCardList extends React.Component {
   static propTypes = {
     isLoadingAds: PropTypes.bool.isRequired,
     reloadRequired: PropTypes.bool.isRequired,
@@ -55,7 +49,7 @@ class AdsPage extends React.Component {
     for (let currentDay = moment().startOf('day'); currentDay.isAfter(this.state.startDate) || currentDay.isSame(this.state.startDate); currentDay.subtract(1, 'day')) {
       elements.push(
         <div style={styles.adsCard} key={index} >
-          <AdsCard date={moment(currentDay)} />
+          <AdsCardContainer date={moment(currentDay)} />
         </div>);
 
       index += 1;
@@ -77,10 +71,6 @@ class AdsPage extends React.Component {
   render() {
     return (
       <div>
-        <div style={styles.filter}>
-          <Filter />
-        </div>
-
         {this.adsCardList()}
 
         {this.renderWaypoint()}
@@ -94,4 +84,4 @@ const mapStateToProps = state => ({
   reloadRequired: state.ads.reloadRequired,
 });
 
-export default connect(mapStateToProps)(AdsPage);
+export default connect(mapStateToProps)(AdsCardList);

@@ -31,7 +31,7 @@ const filter = (state = initialState, action) => {
       });
     case 'DELETE_FILTER_RESULT':
       return Object.assign({}, state, {
-        deleteFilterInit: true,
+        deleteFilterInit: false,
       });
     case 'CHANGE_FILTER_ACTIVE_STATE':
       return Object.assign({}, state, {
