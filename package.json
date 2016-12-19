@@ -34,7 +34,7 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
-  "proxy": "http://localhost:3001/",
+  "proxy": "http://ec2-35-156-102-89.eu-central-1.compute.amazonaws.com/",
   "eslintConfig": {
     "extends": "react-app"
   }

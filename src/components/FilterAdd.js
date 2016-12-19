@@ -10,23 +10,12 @@ const styles = {
   container: {
     display: 'flex',
     flexDirection: 'row-reverse',
-  },
-
-  secondContainer: {
-    display: 'flex',
-    flexDirection: 'row-reverse',
-    justifyContent: 'space-between',
-    marginBottom: '20px',
-  },
-
-  checkboxContainer: {
-    display: 'flex',
-    flexDirection: 'row-reverse',
-    marginTop: '10px',
+    flexWrap: 'wrap',
   },
 
   dropDownItem: {
     marginLeft: '15px',
+    marginTop: '7px',
   },
 
   menuItem: {
@@ -39,7 +28,17 @@ const styles = {
   },
 
   checkbox: {
-    marginRight: '-19px',
+    marginRight: '-20px',
+    marginLeft: '20px',
+    marginTop: '7px',
+  },
+
+  addFilterButtonContainer: {
+    display: 'flex',
+    flexDirection: 'row-reverse',
+    justifyContent: 'space-between',
+    marginTop: '20px',
+    marginBottom: '20px',
   },
 
   addFilterButton: {
@@ -207,87 +206,84 @@ class FilterAdd extends React.Component {
               <MenuItem value={4} primaryText="עד קומה רביעית" style={styles.menuItem} />
             </DropDown>
           </div>
-        </div>
 
-        <div style={styles.secondContainer}>
-          <div style={styles.checkboxContainer}>
-            <div style={styles.dropDownItem}>
-              <DropDown
-                style={styles.dropDownItem}
-                defaultDisplayValue="ממחיר"
-                onChange={this.handleFromPriceTouchTap}
-                value={fromPrice}
-              >
-                <MenuItem value={3000} primaryText="3000 ש״ח" style={styles.menuItem} />
-                <MenuItem value={3500} primaryText="3500 ש״ח" style={styles.menuItem} />
-                <MenuItem value={4000} primaryText="4000 ש״ח" style={styles.menuItem} />
-                <MenuItem value={4500} primaryText="4500 ש״ח" style={styles.menuItem} />
-                <MenuItem value={5000} primaryText="5000 ש״ח" style={styles.menuItem} />
-                <MenuItem value={5500} primaryText="5500 ש״ח" style={styles.menuItem} />
-                <MenuItem value={6000} primaryText="6000 ש״ח" style={styles.menuItem} />
-                <MenuItem value={6500} primaryText="6500 ש״ח" style={styles.menuItem} />
-                <MenuItem value={7000} primaryText="7000 ש״ח" style={styles.menuItem} />
-              </DropDown>
-            </div>
-
-            <div style={styles.dropDownItem}>
-              <DropDown
-                defaultDisplayValue="עד מחיר"
-                onChange={this.handleToPriceTouchTap}
-                value={toPrice}
-              >
-                <MenuItem value={3000} primaryText="3000 ש״ח" style={styles.menuItem} />
-                <MenuItem value={3500} primaryText="3500 ש״ח" style={styles.menuItem} />
-                <MenuItem value={4000} primaryText="4000 ש״ח" style={styles.menuItem} />
-                <MenuItem value={4500} primaryText="4500 ש״ח" style={styles.menuItem} />
-                <MenuItem value={5000} primaryText="5000 ש״ח" style={styles.menuItem} />
-                <MenuItem value={5500} primaryText="5500 ש״ח" style={styles.menuItem} />
-                <MenuItem value={6000} primaryText="6000 ש״ח" style={styles.menuItem} />
-                <MenuItem value={6500} primaryText="6500 ש״ח" style={styles.menuItem} />
-                <MenuItem value={7000} primaryText="7000 ש״ח" style={styles.menuItem} />
-              </DropDown>
-            </div>
-
-            <div style={styles.checkbox}>
-              <Checkbox
-                onCheck={this.handleRenovatedTouchTap}
-                label="משופצת"
-                labelPosition="left"
-                labelStyle={styles.checkboxLabelStyle}
-                checked={renovated}
-              />
-            </div>
-
-            <div>
-              <Checkbox
-                onCheck={this.handleElevatorTouchTap}
-                label="מעלית"
-                labelPosition="left"
-                labelStyle={styles.checkboxLabelStyle}
-                checked={elevator}
-              />
-            </div>
-
-            <div>
-              <Checkbox
-                onCheck={this.handleParkingTouchTap}
-                label="חניה"
-                labelPosition="left"
-                labelStyle={styles.checkboxLabelStyle}
-                checked={parking}
-              />
-            </div>
+          <div style={styles.dropDownItem}>
+            <DropDown
+              style={styles.dropDownItem}
+              defaultDisplayValue="ממחיר"
+              onChange={this.handleFromPriceTouchTap}
+              value={fromPrice}
+            >
+              <MenuItem value={3000} primaryText="3000 ש״ח" style={styles.menuItem} />
+              <MenuItem value={3500} primaryText="3500 ש״ח" style={styles.menuItem} />
+              <MenuItem value={4000} primaryText="4000 ש״ח" style={styles.menuItem} />
+              <MenuItem value={4500} primaryText="4500 ש״ח" style={styles.menuItem} />
+              <MenuItem value={5000} primaryText="5000 ש״ח" style={styles.menuItem} />
+              <MenuItem value={5500} primaryText="5500 ש״ח" style={styles.menuItem} />
+              <MenuItem value={6000} primaryText="6000 ש״ח" style={styles.menuItem} />
+              <MenuItem value={6500} primaryText="6500 ש״ח" style={styles.menuItem} />
+              <MenuItem value={7000} primaryText="7000 ש״ח" style={styles.menuItem} />
+            </DropDown>
           </div>
 
-          <div>
-            <RaisedButton
-              label="הוסף סינון"
-              style={styles.addFilterButton}
-              backgroundColor="#2297A5"
-              labelColor="white"
-              onTouchTap={this.handleAddButonClick}
+          <div style={styles.dropDownItem}>
+            <DropDown
+              style={styles.dropDownItem}
+              defaultDisplayValue="עד מחיר"
+              onChange={this.handleToPriceTouchTap}
+              value={toPrice}
+            >
+              <MenuItem value={3000} primaryText="3000 ש״ח" style={styles.menuItem} />
+              <MenuItem value={3500} primaryText="3500 ש״ח" style={styles.menuItem} />
+              <MenuItem value={4000} primaryText="4000 ש״ח" style={styles.menuItem} />
+              <MenuItem value={4500} primaryText="4500 ש״ח" style={styles.menuItem} />
+              <MenuItem value={5000} primaryText="5000 ש״ח" style={styles.menuItem} />
+              <MenuItem value={5500} primaryText="5500 ש״ח" style={styles.menuItem} />
+              <MenuItem value={6000} primaryText="6000 ש״ח" style={styles.menuItem} />
+              <MenuItem value={6500} primaryText="6500 ש״ח" style={styles.menuItem} />
+              <MenuItem value={7000} primaryText="7000 ש״ח" style={styles.menuItem} />
+            </DropDown>
+          </div>
+
+          <div style={styles.checkbox}>
+            <Checkbox
+              onCheck={this.handleRenovatedTouchTap}
+              label="משופצת"
+              labelPosition="left"
+              labelStyle={styles.checkboxLabelStyle}
+              checked={renovated}
             />
           </div>
+
+          <div style={styles.checkbox}>
+            <Checkbox
+              onCheck={this.handleElevatorTouchTap}
+              label="מעלית"
+              labelPosition="left"
+              labelStyle={styles.checkboxLabelStyle}
+              checked={elevator}
+            />
+          </div>
+
+          <div style={styles.checkbox}>
+            <Checkbox
+              onCheck={this.handleParkingTouchTap}
+              label="חניה"
+              labelPosition="left"
+              labelStyle={styles.checkboxLabelStyle}
+              checked={parking}
+            />
+          </div>
+        </div>
+
+        <div style={styles.addFilterButtonContainer}>
+          <RaisedButton
+            label="הוסף סינון"
+            style={styles.addFilterButton}
+            backgroundColor="#2297A5"
+            labelColor="white"
+            onTouchTap={this.handleAddButonClick}
+          />
         </div>
       </div>
     );

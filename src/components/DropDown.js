@@ -16,6 +16,7 @@ const styles = {
   label: {
     color: '#757575',
     direction: 'rtl',
+    whiteSpace: 'nowrap',
   },
 
   allItem: {
