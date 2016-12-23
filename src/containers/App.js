@@ -1,8 +1,9 @@
 import React from 'react';
 import DevTools from './DevTools';
 import Header from '../components/Header';
-import AdsCardList from './AdsCardListContainer';
+import AdsCardCollection from './AdsCardCollection';
 import FilterContainer from './FilterContainer';
+import FavoritesContainer from './FavoritesContainer';
 
 const styles = {
   main: {
@@ -13,6 +14,10 @@ const styles = {
 
   filter: {
     marginTop: '40px',
+    marginBottom: '40px',
+  },
+
+  favorites: {
     marginBottom: '40px',
   },
 };
@@ -28,7 +33,13 @@ const App = () => (
         <FilterContainer />
       </div>
 
-      <AdsCardList />
+      <div style={styles.favorites}>
+        <FavoritesContainer />
+      </div>
+
+      <div>
+        <AdsCardCollection />
+      </div>
     </main>
 
     {developmentMode &&

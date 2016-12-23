@@ -2,16 +2,29 @@
 
 import React, { PropTypes } from 'react';
 import Chip from 'material-ui/Chip';
+import Checkbox from 'material-ui/Checkbox';
+import ActionFavorite from 'material-ui/svg-icons/action/favorite';
+import ActionFavoriteBorder from 'material-ui/svg-icons/action/favorite-border';
 
 const styles = {
   rtl: {
     direction: 'rtl',
   },
 
+  titleContainer: {
+    display: 'flex',
+    marginBottom: '20px',
+  },
+
   title: {
     fontWeight: 'bold',
     color: 'black',
     textDecoration: 'none',
+    whiteSpace: 'nowrap',
+  },
+
+  favoriteCheckbox: {
+    marginTop: '-3px',
   },
 
   chip: {
@@ -38,11 +51,13 @@ const Ad = ({
   url,
   floor,
   meter,
+  isFavorite,
+  onFavoriteButtonChecked,
 }) => (
   <div>
     <div style={styles.rtl}>
       {title &&
-        <div>
+        <div style={styles.titleContainer}>
           <a
             target="_blank"
             href={url}
@@ -51,7 +66,13 @@ const Ad = ({
           >
             <div dangerouslySetInnerHTML={{ __html: title }} />
           </a>
-          <br />
+
+          <Checkbox
+            checked={isFavorite}
+            onCheck={onFavoriteButtonChecked}
+            checkedIcon={<ActionFavorite />}
+            uncheckedIcon={<ActionFavoriteBorder />}
+          />
         </div>
       }
 
@@ -130,6 +151,8 @@ Ad.propTypes = {
   url: PropTypes.string,
   floor: PropTypes.number,
   meter: PropTypes.number,
+  isFavorite: PropTypes.bool,
+  onFavoriteButtonChecked: PropTypes.func,
 };
 
 export default Ad;

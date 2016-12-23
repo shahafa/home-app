@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import Divider from 'material-ui/Divider';
-import Ad from './Ad';
+import AdContainer from '../containers/AdContainer';
 import Loading from './Loading';
 import NoAdsFound from './NoAdsFound';
 
@@ -29,19 +29,8 @@ const AdsList = ({
     {ads && ads.length !== 0 &&
       ads.map((ad, index) =>
         <div key={index}>
-          <Ad
-            title={ad.title}
-            description={ad.description}
-            rooms={ad.rooms}
-            parking={ad.parking}
-            elevator={ad.elevator}
-            balcony={ad.balcony}
-            renovated={ad.renovated}
-            price={ad.price}
-            url={ad.url}
-            floor={ad.floor}
-            meter={ad.meter}
-          />
+          <AdContainer ad={ad} />
+
           {ads.length - 1 !== index &&
             <Divider style={styles.divider} />
           }

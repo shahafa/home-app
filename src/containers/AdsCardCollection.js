@@ -2,15 +2,20 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
 import Waypoint from 'react-waypoint';
-import AdsCardContainer from './AdsCardContainer';
+import AdsCard from './AdsCardContainer';
 
 const styles = {
   adsCard: {
     marginBottom: '40px',
   },
+
+  wayPoint: {
+    marginBottom: '20px',
+    height: '10px',
+  },
 };
 
-class AdsCardList extends React.Component {
+class AdsCardCollection extends React.Component {
   static propTypes = {
     isLoadingAds: PropTypes.bool.isRequired,
     reloadRequired: PropTypes.bool.isRequired,
@@ -49,7 +54,7 @@ class AdsCardList extends React.Component {
     for (let currentDay = moment().startOf('day'); currentDay.isAfter(this.state.startDate) || currentDay.isSame(this.state.startDate); currentDay.subtract(1, 'day')) {
       elements.push(
         <div style={styles.adsCard} key={index} >
-          <AdsCardContainer date={moment(currentDay)} />
+          <AdsCard date={moment(currentDay)} />
         </div>);
 
       index += 1;
@@ -61,7 +66,9 @@ class AdsCardList extends React.Component {
   renderWaypoint() {
     if (!this.props.isLoadingAds && !this.props.reloadRequired) {
       return (
-        <Waypoint onEnter={this.addDay} />
+        <div style={styles.wayPoint}>
+          <Waypoint onEnter={this.addDay} />
+        </div>
       );
     }
 
@@ -84,4 +91,4 @@ const mapStateToProps = state => ({
   reloadRequired: state.ads.reloadRequired,
 });
 
-export default connect(mapStateToProps)(AdsCardList);
+export default connect(mapStateToProps)(AdsCardCollection);
