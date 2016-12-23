@@ -1,16 +1,19 @@
 import React, { PropTypes } from 'react';
 import moment from 'moment';
 import { Card, CardText } from 'material-ui/Card';
-import AdsListContainer from '../containers/AdsListContainer';
+import Divider from 'material-ui/Divider';
+import AdContainer from '../containers/AdContainer';
+import Loading from './Loading';
+import NoAdsFound from './NoAdsFound';
 
 function title(date, adsNumber) {
   let titleString;
-  if (date.local().isSame(moment(), 'd')) {
+  if (moment(date).local().isSame(moment(), 'd')) {
     titleString = 'היום';
-  } else if (date.local().isSame(moment().subtract(1, 'day'), 'd')) {
+  } else if (moment(date).local().isSame(moment().subtract(1, 'day'), 'd')) {
     titleString = 'אתמול';
   } else {
-    titleString = date.format('L');
+    titleString = moment(date).format('L');
   }
 
   if (!adsNumber || adsNumber === 0) {
@@ -39,28 +42,53 @@ const styles = {
   adsList: {
     padding: '20px',
   },
+
+  divider: {
+    marginTop: '20px',
+    marginBottom: '20px',
+  },
 };
 
 const AdsCard = ({
+  ads,
   date,
-  adsNumber,
 }) => (
   <Card>
     <CardText style={styles.card}>
       <div style={styles.title}>
-        {title(date, adsNumber)}
+        {title(date, ads ? ads.length : 0)}
       </div>
 
       <div style={styles.adsList}>
-        <AdsListContainer date={date.utc().format()} />
+        {/* loading */}
+        {!ads &&
+          <Loading />
+        }
+
+        {/* no ads found */}
+        {ads && ads.length === 0 &&
+          <NoAdsFound />
+        }
+
+        {/* ads list */}
+        {ads && ads.length !== 0 &&
+          ads.map((ad, index) =>
+            <div key={index}>
+              <AdContainer ad={ad} />
+
+              {ads.length - 1 !== index &&
+                <Divider style={styles.divider} />
+              }
+            </div>)
+        }
       </div>
     </CardText>
   </Card>
 );
 
 AdsCard.propTypes = {
-  date: PropTypes.object.isRequired,
-  adsNumber: PropTypes.number.isRequired,
+  ads: PropTypes.array,
+  date: PropTypes.string.isRequired,
 };
 
 export default AdsCard;

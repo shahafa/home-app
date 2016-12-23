@@ -1,25 +1,53 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { getAds } from '../actions/adsActions';
 import AdsCard from '../components/AdsCard';
 
-const AdsCardContainer = ({
-  date,
-  adsNumber,
-}) => (
-  <AdsCard
-    date={date}
-    adsNumber={adsNumber}
-  />
-);
+class AdsCardContainer extends React.Component {
+  static propTypes = {
+    dispatch: PropTypes.func.isRequired,
+    date: PropTypes.string.isRequired,
+    ads: PropTypes.array,
+  }
 
-AdsCardContainer.propTypes = {
-  date: PropTypes.object.isRequired,
-  adsNumber: PropTypes.number.isRequired,
-};
+  componentWillMount() {
+    const {
+      dispatch,
+      date,
+      ads,
+    } = this.props;
+
+    if (dispatch && date && !ads) {
+      dispatch(getAds(this.props.date));
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const {
+      dispatch,
+      date,
+      ads,
+    } = nextProps;
+
+    if (dispatch && date && ads === null) {
+      dispatch(getAds(this.props.date));
+    }
+  }
+
+  render() {
+    const {
+      ads,
+      date,
+    } = this.props;
+
+    return (
+      <AdsCard ads={ads} date={date} />
+    );
+  }
+}
 
 const mapStateToProps = (state, ownProps) => ({
-  adsNumber: state.ads[ownProps.date.utc().format()] ?
-              state.ads[ownProps.date.utc().format()].length : 0,
+  ads: state.ads[ownProps.date] ? state.ads[ownProps.date] : null,
 });
 
 export default connect(mapStateToProps)(AdsCardContainer);

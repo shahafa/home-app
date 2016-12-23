@@ -54,7 +54,7 @@ class AdsCardCollection extends React.Component {
     for (let currentDay = moment().startOf('day'); currentDay.isAfter(this.state.startDate) || currentDay.isSame(this.state.startDate); currentDay.subtract(1, 'day')) {
       elements.push(
         <div style={styles.adsCard} key={index} >
-          <AdsCard date={moment(currentDay)} />
+          <AdsCard date={moment(currentDay).utc().format()} />
         </div>);
 
       index += 1;
