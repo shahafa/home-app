@@ -1,10 +1,13 @@
 /* eslint-disable react/no-danger */
 
 import React, { PropTypes } from 'react';
+import moment from 'moment';
 import Chip from 'material-ui/Chip';
 import Checkbox from 'material-ui/Checkbox';
 import ActionFavorite from 'material-ui/svg-icons/action/favorite';
 import ActionFavoriteBorder from 'material-ui/svg-icons/action/favorite-border';
+import TimelineIcon from 'material-ui/svg-icons/action/timeline';
+import IconButton from 'material-ui/IconButton';
 
 const styles = {
   rtl: {
@@ -25,6 +28,28 @@ const styles = {
 
   favoriteCheckbox: {
     marginTop: '-3px',
+  },
+
+  descriptionContainer: {
+    marginBottom: '20px',
+  },
+
+  priceContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    marginBottom: '20px',
+  },
+
+  priceChanged: {
+    width: '24px',
+    height: '24px',
+    padding: '0px',
+    marginRight: '10px',
+    marginTop: '3px',
+  },
+
+  priceChangedTooltip: {
+    opacity: '1',
   },
 
   chip: {
@@ -51,6 +76,8 @@ const Ad = ({
   url,
   floor,
   meter,
+  priceChanged,
+  priceHistory,
   isFavorite,
   onFavoriteButtonChecked,
 }) => (
@@ -77,18 +104,34 @@ const Ad = ({
       }
 
       {description &&
-        <div>
+        <div style={styles.descriptionContainer}>
           <div dangerouslySetInnerHTML={{ __html: description }} />
-          <br />
         </div>
       }
 
       {price &&
-        <div>
+        <div style={styles.priceContainer}>
           <div>
             {price} ש״ח
           </div>
-          <br />
+
+          {priceChanged &&
+            <div>
+              <IconButton
+                style={styles.priceChanged}
+                tooltip={
+                  priceHistory.reverse().map((p, index) =>
+                    <div key={index}>
+                      {moment(p.date).format('L')} - {p.price} ש״ח
+                    </div>)}
+                tooltipStyles={styles.priceChangedTooltip}
+                tooltipPosition="top-right"
+                disableTouchRipple
+              >
+                <TimelineIcon color="#757575" />
+              </IconButton>
+            </div>
+          }
         </div>
       }
     </div>
@@ -151,6 +194,8 @@ Ad.propTypes = {
   url: PropTypes.string,
   floor: PropTypes.number,
   meter: PropTypes.number,
+  priceChanged: PropTypes.bool,
+  priceHistory: PropTypes.array,
   isFavorite: PropTypes.bool,
   onFavoriteButtonChecked: PropTypes.func,
 };

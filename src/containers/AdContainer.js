@@ -75,6 +75,8 @@ class AdContainer extends React.Component {
         url={ad.url}
         floor={ad.floor}
         meter={ad.meter}
+        priceChanged={ad.priceChanged}
+        priceHistory={ad.priceHistory}
         isFavorite={isFavorite}
         onFavoriteButtonChecked={this.handleFavoriteButtonChecked}
       />
