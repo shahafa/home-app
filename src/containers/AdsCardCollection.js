@@ -67,7 +67,7 @@ class AdsCardCollection extends React.Component {
     if (!this.props.isLoadingAds && !this.props.reloadRequired) {
       return (
         <div style={styles.wayPoint}>
-          <Waypoint onEnter={this.addDay} />
+          <Waypoint onEnter={this.addDay} bottomOffset="-250px" />
         </div>
       );
     }
