@@ -85,12 +85,14 @@ const Filter = ({
             />
           </div>
 
-          <div style={styles.filterList}>
-            <FiltersList
-              filtersList={filtersList}
-              onDeleteFilterButtonClick={onDeleteFilterButtonClick}
-            />
-          </div>
+          {filtersList.length !== 0 &&
+            <div style={styles.filterList}>
+              <FiltersList
+                filtersList={filtersList}
+                onDeleteFilterButtonClick={onDeleteFilterButtonClick}
+              />
+            </div>
+          }
         </div>
       }
     </Card>

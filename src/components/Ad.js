@@ -21,6 +21,7 @@ const styles = {
 
   title: {
     fontWeight: 'bold',
+    fontSize: '14px',
     color: 'black',
     textDecoration: 'none',
     whiteSpace: 'nowrap',
@@ -32,29 +33,20 @@ const styles = {
 
   descriptionContainer: {
     marginBottom: '20px',
+    fontSize: '14px',
   },
 
   priceContainer: {
     display: 'flex',
     alignItems: 'center',
     marginBottom: '20px',
-  },
-
-  priceChanged: {
-    width: '24px',
-    height: '24px',
-    padding: '0px',
-    marginRight: '10px',
-    marginTop: '3px',
-  },
-
-  priceChangedTooltip: {
-    opacity: '1',
+    fontSize: '14px',
   },
 
   chip: {
     margin: 4,
     direction: 'rtl',
+    fontSize: '14px',
   },
 
   chipsWrapper: {
@@ -124,9 +116,9 @@ const Ad = ({
                     <div key={index}>
                       {moment(p.date).format('L')} - {p.price} ש״ח
                     </div>)}
-                tooltipStyles={styles.priceChangedTooltip}
                 tooltipPosition="top-right"
                 disableTouchRipple
+                touch
               >
                 <TimelineIcon color="#757575" />
               </IconButton>
@@ -143,11 +135,9 @@ const Ad = ({
         </Chip>
       }
 
-      {floor &&
-        <Chip style={styles.chip}>
-          קומה {floor}
-        </Chip>
-      }
+      <Chip style={styles.chip}>
+        {floor ? `קומה ${floor}` : 'קומת קרקע'}
+      </Chip>
 
       {elevator &&
         <Chip style={styles.chip}>
