@@ -64,6 +64,7 @@ class AdContainer extends React.Component {
 
     return (
       <Ad
+        createdAt={ad.createdAt}
         title={ad.title}
         description={ad.description}
         rooms={ad.rooms}
@@ -79,6 +80,8 @@ class AdContainer extends React.Component {
         priceHistory={ad.priceHistory}
         isFavorite={isFavorite}
         onFavoriteButtonChecked={this.handleFavoriteButtonChecked}
+        isActive={ad.isActive}
+        unActiveDate={ad.unActiveDate}
       />
     );
   }

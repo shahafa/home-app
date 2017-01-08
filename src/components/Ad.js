@@ -7,6 +7,7 @@ import Checkbox from 'material-ui/Checkbox';
 import ActionFavorite from 'material-ui/svg-icons/action/favorite';
 import ActionFavoriteBorder from 'material-ui/svg-icons/action/favorite-border';
 import TimelineIcon from 'material-ui/svg-icons/action/timeline';
+import CircleIcon from 'material-ui/svg-icons/image/lens';
 import IconButton from 'material-ui/IconButton';
 
 const styles = {
@@ -43,6 +44,25 @@ const styles = {
     fontSize: '14px',
   },
 
+  priceChanged: {
+    width: '24px',
+    height: '24px',
+    padding: '0px',
+    marginRight: '10px',
+    marginTop: '3px',
+  },
+
+  activeStatusContainer: {
+    marginTop: '-8px',
+    marginBottom: '20px',
+    fontSize: '14px',
+  },
+
+  activeStatusContainer2: {
+    marginBottom: '20px',
+    fontSize: '14px',
+  },
+
   chip: {
     margin: 4,
     direction: 'rtl',
@@ -56,7 +76,23 @@ const styles = {
   },
 };
 
+function activeDaysTitle(createdAt, unActiveDate) {
+  let numberOfDays;
+  if (unActiveDate) {
+    numberOfDays = moment(unActiveDate).diff(moment(createdAt).startOf('day'), 'days') + 1;
+  } else {
+    numberOfDays = moment().diff(moment(createdAt).startOf('day'), 'days') + 1;
+  }
+
+  if (numberOfDays === 1) {
+    return 'יום';
+  }
+
+  return `${numberOfDays} ימים`;
+}
+
 const Ad = ({
+  createdAt,
   title,
   description,
   rooms,
@@ -72,6 +108,8 @@ const Ad = ({
   priceHistory,
   isFavorite,
   onFavoriteButtonChecked,
+  isActive,
+  unActiveDate,
 }) => (
   <div>
     <div style={styles.rtl}>
@@ -126,6 +164,21 @@ const Ad = ({
           }
         </div>
       }
+
+      <div style={priceChanged ? styles.activeStatusContainer : styles.activeStatusContainer2}>
+        {isActive ?
+          <div>
+            <CircleIcon color="#4CAF50" style={{ width: '8px', height: '8px' }} />
+            &nbsp;&nbsp;מודעה פעילה
+            &nbsp;({activeDaysTitle(createdAt)})
+          </div> :
+          <div>
+            <CircleIcon color="#f44336" style={{ width: '8px', height: '8px' }} />
+            &nbsp;&nbsp;מודעה לא פעילה
+            &nbsp;(הופיעה בלוח {activeDaysTitle(createdAt, unActiveDate)})
+          </div>
+        }
+      </div>
     </div>
 
     <div style={styles.chipsWrapper}>
@@ -188,6 +241,9 @@ Ad.propTypes = {
   priceHistory: PropTypes.array,
   isFavorite: PropTypes.bool,
   onFavoriteButtonChecked: PropTypes.func,
+  isActive: PropTypes.bool,
+  createdAt: PropTypes.string,
+  unActiveDate: PropTypes.string,
 };
 
 export default Ad;
