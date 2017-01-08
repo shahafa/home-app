@@ -5,6 +5,7 @@ body {
   font-size: 13px;
   line-height: 20px;
   background-color: #EEEEEE;
+  -webkit-text-size-adjust: 100%;
 }
 
 .auth0-lock-header-bg {
