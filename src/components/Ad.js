@@ -150,7 +150,7 @@ const Ad = ({
               <IconButton
                 style={styles.priceChanged}
                 tooltip={
-                  priceHistory.reverse().map((p, index) =>
+                  priceHistory.filter(value => value !== null).reverse().map((p, index) =>
                     <div key={index}>
                       {moment(p.date).format('L')} - {p.price} ש״ח
                     </div>)}
@@ -182,7 +182,7 @@ const Ad = ({
     </div>
 
     <div style={styles.chipsWrapper}>
-      {rooms &&
+      {rooms !== 0 && rooms &&
         <Chip style={styles.chip}>
           {`${rooms} חדרים`}
         </Chip>
