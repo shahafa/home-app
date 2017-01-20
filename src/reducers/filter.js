@@ -1,4 +1,5 @@
 const initialState = {
+  visible: false,
   getFiltersInit: false,
   filters: [],
   addFilterInit: false,
@@ -36,6 +37,14 @@ const filter = (state = initialState, action) => {
     case 'CHANGE_FILTER_ACTIVE_STATE':
       return Object.assign({}, state, {
         filterActive: !state.filterActive,
+      });
+    case 'CHANGE_FILTER_VISIBLE_STATE':
+      return Object.assign({}, state, {
+        visible: !state.visible,
+      });
+    case 'GET_NEIGHBIRHOODS_LIST_RESULT':
+      return Object.assign({}, state, {
+        neighborhoodsList: action.neighborhoodsList,
       });
     default:
       return state;

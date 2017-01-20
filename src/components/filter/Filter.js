@@ -29,8 +29,12 @@ const styles = {
 };
 
 const Filter = ({
+  neighborhoodsList,
   filterActive,
   onActiveFilterToggle,
+  filterVisible,
+  onFilterVisibleButtonClick,
+  neighborhood,
   fromRooms,
   toRooms,
   fromFloor,
@@ -40,6 +44,7 @@ const Filter = ({
   renovated,
   elevator,
   parking,
+  onNeighborhoodSelect,
   onFromRoomsSelect,
   onToRoomsSelect,
   onFromFloorSelect,
@@ -56,13 +61,19 @@ const Filter = ({
   <div>
     <Card>
       <div style={styles.toggleFilterButton}>
-        <ToggleFilterButton onToggle={onActiveFilterToggle} />
+        <ToggleFilterButton
+          onToggle={onActiveFilterToggle}
+          onFilterVisibleButtonClick={onFilterVisibleButtonClick}
+          filterVisible={filterVisible}
+        />
       </div>
 
-      {filterActive &&
+      {filterActive && filterVisible &&
         <div>
           <div style={styles.addFilter}>
             <AddFilter
+              neighborhoodsList={neighborhoodsList}
+              neighborhood={neighborhood}
               fromRooms={fromRooms}
               toRooms={toRooms}
               fromFloor={fromFloor}
@@ -72,6 +83,7 @@ const Filter = ({
               renovated={renovated}
               elevator={elevator}
               parking={parking}
+              onNeighborhoodSelect={onNeighborhoodSelect}
               onFromRoomsSelect={onFromRoomsSelect}
               onToRoomsSelect={onToRoomsSelect}
               onFromFloorSelect={onFromFloorSelect}
@@ -100,8 +112,12 @@ const Filter = ({
 );
 
 Filter.propTypes = {
-  onActiveFilterToggle: PropTypes.func.isRequired,
   filterActive: PropTypes.bool.isRequired,
+  onActiveFilterToggle: PropTypes.func.isRequired,
+  filterVisible: PropTypes.bool.isRequired,
+  onFilterVisibleButtonClick: PropTypes.func.isRequired,
+  neighborhoodsList: PropTypes.array,
+  neighborhood: PropTypes.string,
   fromRooms: PropTypes.number,
   toRooms: PropTypes.number,
   fromFloor: PropTypes.number,
@@ -111,6 +127,7 @@ Filter.propTypes = {
   renovated: PropTypes.bool.isRequired,
   elevator: PropTypes.bool.isRequired,
   parking: PropTypes.bool.isRequired,
+  onNeighborhoodSelect: PropTypes.func.isRequired,
   onFromRoomsSelect: PropTypes.func.isRequired,
   onToRoomsSelect: PropTypes.func.isRequired,
   onFromFloorSelect: PropTypes.func.isRequired,

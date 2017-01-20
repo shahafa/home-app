@@ -90,6 +90,28 @@ const changeFilterActiveState = () => ({
   type: 'CHANGE_FILTER_ACTIVE_STATE',
 });
 
+export const changeFilterVisibleState = () => ({
+  type: 'CHANGE_FILTER_VISIBLE_STATE',
+});
+
+const getNeighborhoodsListResult = neighborhoodsList => ({
+  type: 'GET_NEIGHBIRHOODS_LIST_RESULT',
+  neighborhoodsList,
+});
+
+export const getNeighborhoodsList = () => (dispatch) => {
+  fetch('/api/getNeighborhoods', {
+    method: 'GET',
+    headers: {
+      authorization: `Bearer ${AuthService.getToken()}`,
+    },
+  })
+  .then(response => response.json())
+  .then((neighborhoods) => {
+    dispatch(getNeighborhoodsListResult(neighborhoods.data.neighborhoods[0].neighborhoods));
+  });
+};
+
 export const toggleFilterActiveState = () => (dispatch) => {
   dispatch(changeFilterActiveState());
   dispatch(removeAds());

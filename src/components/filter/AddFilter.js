@@ -1,3 +1,5 @@
+/* eslint-disable no-underscore-dangle */
+
 import React, { PropTypes } from 'react';
 import MenuItem from 'material-ui/MenuItem';
 import Checkbox from 'material-ui/Checkbox';
@@ -45,6 +47,8 @@ const styles = {
 };
 
 const AddFilter = ({
+  neighborhoodsList,
+  neighborhood,
   fromRooms,
   toRooms,
   fromFloor,
@@ -54,6 +58,7 @@ const AddFilter = ({
   renovated,
   elevator,
   parking,
+  onNeighborhoodSelect,
   onFromRoomsSelect,
   onToRoomsSelect,
   onFromFloorSelect,
@@ -67,6 +72,25 @@ const AddFilter = ({
 }) => (
   <div>
     <div style={styles.container}>
+      {neighborhoodsList &&
+        <div style={styles.dropDownItem}>
+          <DropDown
+            defaultDisplayValue="שכונה"
+            onChange={onNeighborhoodSelect}
+            value={neighborhood}
+          >
+            {neighborhoodsList.map((item, index) =>
+              <MenuItem
+                key={index}
+                value={item._id}
+                primaryText={item._id}
+                style={styles.menuItem}
+              />)
+            }
+          </DropDown>
+        </div>
+      }
+
       <div style={styles.dropDownItem}>
         <DropDown
           defaultDisplayValue="מחדרים"
@@ -138,6 +162,9 @@ const AddFilter = ({
           <MenuItem value={6000} primaryText="6000 ש״ח" style={styles.menuItem} />
           <MenuItem value={6500} primaryText="6500 ש״ח" style={styles.menuItem} />
           <MenuItem value={7000} primaryText="7000 ש״ח" style={styles.menuItem} />
+          <MenuItem value={7250} primaryText="7250 ש״ח" style={styles.menuItem} />
+          <MenuItem value={7500} primaryText="7500 ש״ח" style={styles.menuItem} />
+          <MenuItem value={8000} primaryText="8000 ש״ח" style={styles.menuItem} />
         </DropDown>
       </div>
 
@@ -157,6 +184,9 @@ const AddFilter = ({
           <MenuItem value={6000} primaryText="6000 ש״ח" style={styles.menuItem} />
           <MenuItem value={6500} primaryText="6500 ש״ח" style={styles.menuItem} />
           <MenuItem value={7000} primaryText="7000 ש״ח" style={styles.menuItem} />
+          <MenuItem value={7250} primaryText="7250 ש״ח" style={styles.menuItem} />
+          <MenuItem value={7500} primaryText="7500 ש״ח" style={styles.menuItem} />
+          <MenuItem value={8000} primaryText="8000 ש״ח" style={styles.menuItem} />
         </DropDown>
       </div>
 
@@ -205,6 +235,8 @@ const AddFilter = ({
 );
 
 AddFilter.propTypes = {
+  neighborhoodsList: PropTypes.array,
+  neighborhood: PropTypes.string,
   fromRooms: PropTypes.number,
   toRooms: PropTypes.number,
   fromFloor: PropTypes.number,
@@ -214,6 +246,7 @@ AddFilter.propTypes = {
   renovated: PropTypes.bool.isRequired,
   elevator: PropTypes.bool.isRequired,
   parking: PropTypes.bool.isRequired,
+  onNeighborhoodSelect: PropTypes.func.isRequired,
   onFromRoomsSelect: PropTypes.func.isRequired,
   onToRoomsSelect: PropTypes.func.isRequired,
   onFromFloorSelect: PropTypes.func.isRequired,

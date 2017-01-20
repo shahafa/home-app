@@ -5,11 +5,16 @@ import DeleteIcon from 'material-ui/svg-icons/action/delete';
 
 function filterString(filter) {
   let string = '';
+  if (filter.neighborhood) {
+    string = `${filter.neighborhood}`;
+  }
+
   if (filter.fromRooms) {
+    if (string !== '') { string += ', '; }
     if (filter.fromRooms === 1) {
-      string = 'מחדר אחד';
+      string += 'מחדר אחד';
     } else {
-      string = `מ- ${filter.fromRooms} חדרים`;
+      string += `מ- ${filter.fromRooms} חדרים`;
     }
   }
 
