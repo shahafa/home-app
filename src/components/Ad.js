@@ -101,6 +101,8 @@ const Ad = ({
   balcony,
   renovated,
   price,
+  contactName,
+  phone,
   url,
   floor,
   meter,
@@ -162,6 +164,12 @@ const Ad = ({
               </IconButton>
             </div>
           }
+        </div>
+      }
+
+      {contactName && phone &&
+        <div style={priceChanged ? styles.activeStatusContainer : styles.activeStatusContainer2}>
+          {`${contactName} - ${phone}`}
         </div>
       }
 
@@ -234,6 +242,8 @@ Ad.propTypes = {
   balcony: PropTypes.bool,
   renovated: PropTypes.bool,
   price: PropTypes.number,
+  contactName: PropTypes.string,
+  phone: PropTypes.string,
   url: PropTypes.string,
   floor: PropTypes.number,
   meter: PropTypes.number,

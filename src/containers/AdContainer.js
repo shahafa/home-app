@@ -73,6 +73,8 @@ class AdContainer extends React.Component {
         balcony={ad.balcony}
         renovated={ad.renovated}
         price={ad.price}
+        contactName={ad.contactName}
+        phone={ad.phone}
         url={ad.url}
         floor={ad.floor}
         meter={ad.meter}

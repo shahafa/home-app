@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import Toggle from 'material-ui/Toggle';
+import IconButton from 'material-ui/IconButton';
 import ArrowDown from 'material-ui/svg-icons/hardware/keyboard-arrow-down';
 import ArrowUp from 'material-ui/svg-icons/hardware/keyboard-arrow-up';
 
@@ -16,9 +17,10 @@ const styles = {
   },
 
   filterVisibleButton: {
-    cursor: 'pointer',
-    alignSelf: 'flex-start',
     marginLeft: '10px',
+    padding: '0',
+    height: '24px',
+    width: '24px',
   },
 };
 
@@ -37,10 +39,12 @@ const ToggleFilterButton = ({
       onToggle={onToggle}
     />
 
-    {filterVisible ?
-      <ArrowUp color="#757575" style={styles.filterVisibleButton} onTouchTap={onFilterVisibleButtonClick} /> :
-      <ArrowDown color="#757575" style={styles.filterVisibleButton} onTouchTap={onFilterVisibleButtonClick} />
-    }
+    <IconButton style={styles.filterVisibleButton}>
+      {filterVisible ?
+        <ArrowUp color="#757575" onTouchTap={onFilterVisibleButtonClick} /> :
+        <ArrowDown color="#757575" onTouchTap={onFilterVisibleButtonClick} />
+      }
+    </IconButton>
   </div>
 );
 
