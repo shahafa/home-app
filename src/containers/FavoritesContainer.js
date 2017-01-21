@@ -23,7 +23,11 @@ class AdContainer extends React.Component {
     } = this.props;
 
     return (
-      <Favorites favorites={favorites} />
+      <div>
+        {favorites && favorites.length !== 0 &&
+          <Favorites favorites={favorites} />
+        }
+      </div>
     );
   }
 }
