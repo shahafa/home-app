@@ -29,7 +29,7 @@ export const getAds = date => (dispatch, getState) => {
   })
   .then(response => response.json())
   .then((response) => {
-    dispatch(getAdsResult(date, response.data.ads));
+    dispatch(getAdsResult(date, response.data.ads.filter(ad => ad.description !== undefined)));
   });
 };
 
