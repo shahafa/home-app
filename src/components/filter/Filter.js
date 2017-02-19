@@ -36,7 +36,6 @@ const styles = {
 
 const Filter = ({
   neighborhoodsList,
-  filterActive,
   onActiveFilterToggle,
   filterVisible,
   onFilterVisibleButtonClick,
@@ -83,7 +82,7 @@ const Filter = ({
             />
           </div>
 
-          {filterActive && filterVisible &&
+          {filterVisible &&
             <div>
               <div style={styles.addFilter}>
                 <AddFilter
@@ -129,7 +128,6 @@ const Filter = ({
 );
 
 Filter.propTypes = {
-  filterActive: PropTypes.bool.isRequired,
   onActiveFilterToggle: PropTypes.func.isRequired,
   filterVisible: PropTypes.bool.isRequired,
   onFilterVisibleButtonClick: PropTypes.func.isRequired,

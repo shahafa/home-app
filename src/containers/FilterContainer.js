@@ -19,7 +19,6 @@ const initialState = {
 class FilterContainer extends React.Component {
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
-    filterActive: PropTypes.bool.isRequired,
     visible: PropTypes.bool.isRequired,
     filtersList: PropTypes.array,
     neighborhoodsList: PropTypes.array,
@@ -124,7 +123,6 @@ class FilterContainer extends React.Component {
 
   render() {
     const {
-      filterActive,
       visible,
       filtersList,
       neighborhoodsList,
@@ -146,7 +144,6 @@ class FilterContainer extends React.Component {
 
     return (
       <Filter
-        filterActive={filterActive}
         filterVisible={visible}
         filtersList={filtersList}
         neighborhoodsList={neighborhoodsList}
@@ -181,7 +178,6 @@ class FilterContainer extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  filterActive: state.filter.filterActive,
   visible: state.filter.visible,
   filtersList: state.filter.filters,
   neighborhoodsList: state.filter.neighborhoodsList,
