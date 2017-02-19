@@ -1,12 +1,18 @@
 import React, { PropTypes } from 'react';
 import { Card } from 'material-ui/Card';
+import Divider from 'material-ui/Divider';
+import SearchBoxContainer from '../../containers/SearchBoxContainer';
 import AddFilter from './AddFilter';
 import FiltersList from './FiltersList';
 import ToggleFilterButton from './ToggleFilterButton';
 
 const styles = {
+  searchBox: {
+    paddingTop: '10px',
+  },
+
   toggleFilterButton: {
-    paddingTop: '20px',
+    paddingTop: '15px',
     paddingRight: '20px',
     paddingLeft: '20px',
     paddingBottom: '15px',
@@ -57,52 +63,63 @@ const Filter = ({
   onAddFilterButtonClick,
   onDeleteFilterButtonClick,
   filtersList,
+  searchQuery,
 }) => (
   <div>
     <Card>
-      <div style={styles.toggleFilterButton}>
-        <ToggleFilterButton
-          onToggle={onActiveFilterToggle}
-          onFilterVisibleButtonClick={onFilterVisibleButtonClick}
-          filterVisible={filterVisible}
-        />
+      <div style={styles.searchBox}>
+        <SearchBoxContainer />
       </div>
 
-      {filterActive && filterVisible &&
+      {searchQuery === '' &&
         <div>
-          <div style={styles.addFilter}>
-            <AddFilter
-              neighborhoodsList={neighborhoodsList}
-              neighborhood={neighborhood}
-              fromRooms={fromRooms}
-              toRooms={toRooms}
-              fromFloor={fromFloor}
-              toFloor={toFloor}
-              fromPrice={fromPrice}
-              toPrice={toPrice}
-              renovated={renovated}
-              elevator={elevator}
-              parking={parking}
-              onNeighborhoodSelect={onNeighborhoodSelect}
-              onFromRoomsSelect={onFromRoomsSelect}
-              onToRoomsSelect={onToRoomsSelect}
-              onFromFloorSelect={onFromFloorSelect}
-              onToFloorSelect={onToFloorSelect}
-              onFromPriceSelect={onFromPriceSelect}
-              onToPriceSelect={onToPriceSelect}
-              onRenovatedCheck={onRenovatedCheck}
-              onElevatorCheck={onElevatorCheck}
-              onParkingCheck={onParkingCheck}
-              onAddFilterButtonClick={onAddFilterButtonClick}
+          <Divider style={styles.divider} />
+
+          <div style={styles.toggleFilterButton}>
+            <ToggleFilterButton
+              onToggle={onActiveFilterToggle}
+              onFilterVisibleButtonClick={onFilterVisibleButtonClick}
+              filterVisible={filterVisible}
             />
           </div>
 
-          {filtersList.length !== 0 &&
-            <div style={styles.filterList}>
-              <FiltersList
-                filtersList={filtersList}
-                onDeleteFilterButtonClick={onDeleteFilterButtonClick}
-              />
+          {filterActive && filterVisible &&
+            <div>
+              <div style={styles.addFilter}>
+                <AddFilter
+                  neighborhoodsList={neighborhoodsList}
+                  neighborhood={neighborhood}
+                  fromRooms={fromRooms}
+                  toRooms={toRooms}
+                  fromFloor={fromFloor}
+                  toFloor={toFloor}
+                  fromPrice={fromPrice}
+                  toPrice={toPrice}
+                  renovated={renovated}
+                  elevator={elevator}
+                  parking={parking}
+                  onNeighborhoodSelect={onNeighborhoodSelect}
+                  onFromRoomsSelect={onFromRoomsSelect}
+                  onToRoomsSelect={onToRoomsSelect}
+                  onFromFloorSelect={onFromFloorSelect}
+                  onToFloorSelect={onToFloorSelect}
+                  onFromPriceSelect={onFromPriceSelect}
+                  onToPriceSelect={onToPriceSelect}
+                  onRenovatedCheck={onRenovatedCheck}
+                  onElevatorCheck={onElevatorCheck}
+                  onParkingCheck={onParkingCheck}
+                  onAddFilterButtonClick={onAddFilterButtonClick}
+                />
+              </div>
+
+              {filtersList.length !== 0 &&
+                <div style={styles.filterList}>
+                  <FiltersList
+                    filtersList={filtersList}
+                    onDeleteFilterButtonClick={onDeleteFilterButtonClick}
+                  />
+                </div>
+              }
             </div>
           }
         </div>
@@ -140,6 +157,7 @@ Filter.propTypes = {
   onAddFilterButtonClick: PropTypes.func.isRequired,
   onDeleteFilterButtonClick: PropTypes.func.isRequired,
   filtersList: PropTypes.array,
+  searchQuery: PropTypes.string,
 };
 
 export default Filter;

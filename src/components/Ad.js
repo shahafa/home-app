@@ -119,7 +119,7 @@ const Ad = ({
         <div style={styles.titleContainer}>
           <a
             target="_blank"
-            href={url}
+            href={`${url}&utm_source=SendToFriend&utm_medium=email&utm_campaign=SendToFriend&utm_content=Nadlan`}
             rel="noopener noreferrer"
             style={styles.title}
           >
@@ -169,7 +169,7 @@ const Ad = ({
 
       {contactName && phone &&
         <div style={priceChanged ? styles.activeStatusContainer : styles.activeStatusContainer2}>
-          {`${contactName} - ${phone}`}
+          {`${contactName} - `}<a href={`tel:${phone}`}>{phone}</a>
         </div>
       }
 
@@ -178,12 +178,12 @@ const Ad = ({
           <div>
             <CircleIcon color="#4CAF50" style={{ width: '8px', height: '8px' }} />
             &nbsp;&nbsp;מודעה פעילה
-            &nbsp;({activeDaysTitle(createdAt)})
+            &nbsp;({activeDaysTitle(createdAt)} מ- {moment(createdAt).format('L')})
           </div> :
           <div>
             <CircleIcon color="#f44336" style={{ width: '8px', height: '8px' }} />
             &nbsp;&nbsp;מודעה לא פעילה
-            &nbsp;(הופיעה בלוח {activeDaysTitle(createdAt, unActiveDate)})
+            &nbsp;(הופיעה בלוח {activeDaysTitle(createdAt, unActiveDate)} מ- {moment(createdAt).format('L')})
           </div>
         }
       </div>

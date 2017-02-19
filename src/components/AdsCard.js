@@ -6,7 +6,15 @@ import AdContainer from '../containers/AdContainer';
 import Loading from './Loading';
 import NoAdsFound from './NoAdsFound';
 
-function title(date, adsNumber) {
+function generateTitle(title, adsNumber) {
+  if (!adsNumber || adsNumber === 0) {
+    return title;
+  }
+
+  return `${title} (${adsNumber})`;
+}
+
+function generateDateTitle(date, adsNumber) {
   let titleString;
   if (moment(date).local().isSame(moment(), 'd')) {
     titleString = 'היום';
@@ -52,11 +60,13 @@ const styles = {
 const AdsCard = ({
   ads,
   date,
+  title,
 }) => (
   <Card>
     <CardText style={styles.card}>
       <div style={styles.title}>
-        {title(date, ads ? ads.length : 0)}
+        {title ? generateTitle(title, ads ? ads.length : 0) :
+                 generateDateTitle(date, ads ? ads.length : 0)}
       </div>
 
       <div style={styles.adsList}>
@@ -88,7 +98,8 @@ const AdsCard = ({
 
 AdsCard.propTypes = {
   ads: PropTypes.array,
-  date: PropTypes.string.isRequired,
+  date: PropTypes.string,
+  title: PropTypes.string,
 };
 
 export default AdsCard;

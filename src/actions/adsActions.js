@@ -33,6 +33,39 @@ export const getAds = date => (dispatch, getState) => {
   });
 };
 
+const searchAdsInit = searchQuery => ({
+  type: 'SEARCH_ADS_INIT',
+  searchQuery,
+});
+
+const searchAdsResult = ads => ({
+  type: 'SEARCH_ADS_RESULT',
+  ads,
+});
+
+export const searchAds = query => (dispatch) => {
+  dispatch(searchAdsInit(query));
+
+  return fetch('/api/searchApartments', {
+    method: 'POST',
+    headers: {
+      authorization: `Bearer ${AuthService.getToken()}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      query,
+    }),
+  })
+  .then(response => response.json())
+  .then((response) => {
+    dispatch(searchAdsResult(response.data.ads.filter(ad => ad.description !== undefined)));
+  });
+};
+
+export const searchAdsReset = () => ({
+  type: 'SEARCH_ADS_RESET',
+});
+
 export const removeAds = () => ({
   type: 'REMOVE_ADS',
 });

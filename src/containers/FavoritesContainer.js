@@ -1,9 +1,9 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { getFavorites } from '../actions/favoritesActions';
-import Favorites from '../components/Favorites';
+import AdsCard from '../components/AdsCard';
 
-class AdContainer extends React.Component {
+class FavoritesContainer extends React.Component {
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
     favorites: PropTypes.array,
@@ -25,7 +25,7 @@ class AdContainer extends React.Component {
     return (
       <div>
         {favorites && favorites.length !== 0 &&
-          <Favorites favorites={favorites} />
+          <AdsCard ads={favorites} title="מועדפים" />
         }
       </div>
     );
@@ -36,4 +36,4 @@ const mapStateToProps = state => ({
   favorites: state.favorites.favorites,
 });
 
-export default connect(mapStateToProps)(AdContainer);
+export default connect(mapStateToProps)(FavoritesContainer);

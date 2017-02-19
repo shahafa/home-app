@@ -23,6 +23,7 @@ class FilterContainer extends React.Component {
     visible: PropTypes.bool.isRequired,
     filtersList: PropTypes.array,
     neighborhoodsList: PropTypes.array,
+    searchQuery: PropTypes.string,
   }
 
   state = initialState;
@@ -127,6 +128,7 @@ class FilterContainer extends React.Component {
       visible,
       filtersList,
       neighborhoodsList,
+      searchQuery,
     } = this.props;
 
     const {
@@ -172,6 +174,7 @@ class FilterContainer extends React.Component {
         onDeleteFilterButtonClick={this.handleDeleteButonClick}
         onActiveFilterToggle={this.handleActiveFilterToggle}
         onFilterVisibleButtonClick={this.handleFilterVisibleButtonClick}
+        searchQuery={searchQuery}
       />
     );
   }
@@ -182,6 +185,7 @@ const mapStateToProps = state => ({
   visible: state.filter.visible,
   filtersList: state.filter.filters,
   neighborhoodsList: state.filter.neighborhoodsList,
+  searchQuery: state.ads.searchQuery,
 });
 
 export default connect(mapStateToProps)(FilterContainer);

@@ -68,7 +68,8 @@ function filterString(filter) {
 const styles = {
   container: {
     display: 'flex',
-    flexDirection: 'row-reverse',
+    direction: 'rtl',
+    flexDirection: 'row',
     alignItems: 'center',
     lineHeight: '24px',
     marginBottom: '10px',
