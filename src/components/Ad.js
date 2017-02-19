@@ -156,7 +156,7 @@ const Ad = ({
                     <div key={index}>
                       {moment(p.date).format('L')} - {p.price} ש״ח
                     </div>)}
-                tooltipPosition="top-right"
+                tooltipPosition="top-left"
                 disableTouchRipple
                 touch
               >
