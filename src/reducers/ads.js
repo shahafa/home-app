@@ -40,6 +40,9 @@ const ads = (state = initialState, action) => {
       return ({
         getAdsInit: false,
         reloadRequired: true,
+        searchAdsInit: false,
+        searchQuery: '',
+        searchResults: null,
       });
     default:
       return state;
