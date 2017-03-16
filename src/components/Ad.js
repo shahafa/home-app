@@ -74,6 +74,10 @@ const styles = {
     flexWrap: 'wrap',
     flexDirection: 'row-reverse',
   },
+
+  favoriteButton: {
+    width: '20px',
+  },
 };
 
 function activeDaysTitle(createdAt, unActiveDate) {
@@ -127,6 +131,7 @@ const Ad = ({
           </a>
 
           <Checkbox
+            style={styles.favoriteButton}
             checked={isFavorite}
             onCheck={onFavoriteButtonChecked}
             checkedIcon={<ActionFavorite />}
