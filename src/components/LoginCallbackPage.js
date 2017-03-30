@@ -26,7 +26,7 @@ const styles = {
 const LoginCallbackPage = () => (
   <div style={styles.container}>
     <img style={styles.logo} src={LogoImg} alt="" />
-    <div style={styles.label}>Please wait while authenticating...</div>
+    <div style={styles.label}>...אנא המתן</div>
   </div>
 );
 

@@ -5,6 +5,7 @@ import IconButton from 'material-ui/IconButton';
 import MenuItem from 'material-ui/MenuItem';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import AuthService from '../utils/AuthService';
+import LogoImg from '../static/homeTitle.svg';
 
 const styles = {
   appBar: {
@@ -36,12 +37,12 @@ class Header extends Component {
   rightMenu() {
     return (
       <IconMenu
-        iconButtonElement={<IconButton><MoreVertIcon /></IconButton>}
+        iconButtonElement={<IconButton><MoreVertIcon color="white" /></IconButton>}
         onChange={this.handleRightMenuChange}
         anchorOrigin={styles.menuOrigin}
         targetOrigin={styles.menuOrigin}
       >
-        <MenuItem value="logout" primaryText="Logout" />
+        <MenuItem value="logout" primaryText="התנתק" />
       </IconMenu>
     );
   }
@@ -50,9 +51,12 @@ class Header extends Component {
     return (
       <AppBar
         style={styles.appBar}
-        showMenuIconButton={false}
-        title={<span style={styles.title}>Home</span>}
-        iconElementRight={this.rightMenu()}
+        iconElementLeft={this.rightMenu()}
+        title={
+          <div style={{ paddingTop: '4px' }}>
+            <img src={LogoImg} alt="" style={{ height: '24px' }} />
+          </div>}
+        titleStyle={{ display: 'flex', flexDirection: 'row-reverse' }}
       />
     );
   }

@@ -19,7 +19,7 @@ export default class AuthService {
         logo: LogoImg,
       },
       languageDictionary: {
-        title: 'Home',
+        title: 'בית',
       },
     });
 
