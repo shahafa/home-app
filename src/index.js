@@ -28,6 +28,6 @@ ReactDOM.render(
   <Provider store={store}>
     <MuiThemeProvider muiTheme={muiTheme}>
       <Routes />
-    </ MuiThemeProvider>
+    </MuiThemeProvider>
   </Provider>,
   document.getElementById('root'));

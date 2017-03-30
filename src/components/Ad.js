@@ -9,6 +9,7 @@ import ActionFavoriteBorder from 'material-ui/svg-icons/action/favorite-border';
 import TimelineIcon from 'material-ui/svg-icons/action/timeline';
 import CircleIcon from 'material-ui/svg-icons/image/lens';
 import IconButton from 'material-ui/IconButton';
+import Images from './Images';
 
 const styles = {
   rtl: {
@@ -63,6 +64,11 @@ const styles = {
     fontSize: '14px',
   },
 
+  images: {
+    marginBottom: '20px',
+    marginRight: '5px',
+  },
+
   chip: {
     margin: 4,
     direction: 'rtl',
@@ -110,6 +116,7 @@ const Ad = ({
   url,
   floor,
   meter,
+  images,
   priceChanged,
   priceHistory,
   isFavorite,
@@ -157,8 +164,8 @@ const Ad = ({
               <IconButton
                 style={styles.priceChanged}
                 tooltip={
-                  priceHistory.filter(value => value !== null).reverse().map((p, index) =>
-                    <div key={index}>
+                  priceHistory.filter(value => value !== null).reverse().map(p =>
+                    <div key={p.date}>
                       {moment(p.date).format('L')} - {p.price} ש״ח
                     </div>)}
                 tooltipPosition="top-left"
@@ -192,6 +199,10 @@ const Ad = ({
           </div>
         }
       </div>
+    </div>
+
+    <div style={styles.images}>
+      <Images images={images} />
     </div>
 
     <div style={styles.chipsWrapper}>
@@ -252,6 +263,7 @@ Ad.propTypes = {
   url: PropTypes.string,
   floor: PropTypes.number,
   meter: PropTypes.number,
+  images: PropTypes.array,
   priceChanged: PropTypes.bool,
   priceHistory: PropTypes.array,
   isFavorite: PropTypes.bool,
