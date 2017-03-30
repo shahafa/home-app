@@ -79,9 +79,9 @@ const AddFilter = ({
             onChange={onNeighborhoodSelect}
             value={neighborhood}
           >
-            {neighborhoodsList.map((item, index) =>
+            {neighborhoodsList.map(item =>
               <MenuItem
-                key={index}
+                key={item._id}
                 value={item._id}
                 primaryText={item._id}
                 style={styles.menuItem}

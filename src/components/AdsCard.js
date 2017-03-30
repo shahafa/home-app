@@ -83,7 +83,7 @@ const AdsCard = ({
         {/* ads list */}
         {ads && ads.length !== 0 &&
           ads.map((ad, index) =>
-            <div key={index}>
+            <div key={ad.id}>
               <AdContainer ad={ad} />
 
               {ads.length - 1 !== index &&
