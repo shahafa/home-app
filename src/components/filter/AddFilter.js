@@ -44,6 +44,10 @@ const styles = {
     height: '18px',
     marginTop: '15px',
   },
+
+  addFilterButtonLabel: {
+    color: 'white',
+  },
 };
 
 const AddFilter = ({
@@ -224,9 +228,9 @@ const AddFilter = ({
     <div style={styles.addFilterButtonContainer}>
       <RaisedButton
         label="הוסף סינון"
+        labelStyle={styles.addFilterButtonLabel}
         style={styles.addFilterButton}
         backgroundColor="#2297A5"
-        labelColor="white"
         onTouchTap={onAddFilterButtonClick}
       />
     </div>
